@@ -6,10 +6,10 @@ class zugangsdaten {
 		global $vorgaben;
 		$vorgaben['db_prefix'] = 'afk__';
 		if ($vorgaben['localhost']===false) {
-			$this->host = '10.35.47.156';
-			$this->user = 'k70530_mh1';
-			$this->pass = 'Jfs6o_47';
-			$this->db   = $this->user;
+			$this->host = 'localhost';
+			$this->user = 'Database User';
+			$this->pass = 'Database Password';
+			$this->db   = 'Database Name';
 		} else {
 			$this->host = 'localhost';
 			$this->user = 'root';
