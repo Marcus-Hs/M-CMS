@@ -1,0 +1,74 @@
+<!-- TPL=sprache -->
+	<h1>%%SPRACHE_BEARBEITEN%%</h1>
+	<form action="|PHPSELF|" method="post" enctype="multipart/form-data" style="width:580px">
+		<input type="hidden" name="page" value="|PAGE|" />
+		|PHPSESSID|
+		<table><tr><td>
+		<input type="hidden" name="languages[all_langs][]"  value="|LANG_ID|" />
+		<input type="hidden" name="languages[LANG_ID]" value="|LANG_ID|" />
+		<input type="hidden" name="MAX_FILE_SIZE" id="max_file_size" value="§MAX_FILE_SIZE§" />
+		<p><label for="short">%%ABKUERZUNG%%:</label> 	    <input id="short"      name="languages[short]"      required="required" value="|SHORT|" /><br />
+		<label for="lang_intl">%%SPRACHE%% (intl):</label> 	<input id="lang_intl"  name="languages[lang_intl]"  required="required" value="|LANG_INTL|" /><br />
+		<label for="lang_local">%%SPRACHE%% (local):</label><input id="lang_local" name="languages[lang_local]" required="required" value="|LANG_LOCAL|" class="|DIRECTION|" /><br />
+		<label for="codepage">Codepage:</label> 		    <input id="codepage"   name="languages[codepage]"   required="required" value="|CODEPAGE|" /><br />
+		<label for="omain">Domain:</label> 				    <input id="domain"     name="languages[domain]"     type="text"			value="|DOMAIN|" /></p>
+		</td><td>
+		<p>
+		<label for="position">%%POSITION%%: </label>		<input id="position" type="number" size="4" name="languages[position][|LANG_ID|]" value="|POSITION|" />
+		<input type="checkbox" name="languages[visibility][|LANG_ID|]" value="1" |VISIBLE| /> %%ANZEIGEN%%</p>
+		<h5>%%SCHREIBWEISE%%: </h5>
+		<p><input type="radio" name="languages[direction][|LANG_ID|]" value="ltr" |LTR| />%%VON_LINKS_NACH_RECHTS%% |
+		<input type="radio" name="languages[direction][|LANG_ID|]" value="rtl" |RTL| />%%VON_RECHTS_NACH_LINKS%%</p>
+		<p><label for="ansprechpartner">%%ANSPRECHPARTNER%%:</label><select id="ansprechpartner" name="languages[UID][|LANG_ID|]">
+			$ANSPRECHPARTNER$
+		</select></p>
+		</td></tr>
+		<tr><td colspan="2">
+		<p><label for="flag">%%FLAGGE%%:</label>				|BILD_FLAG|  <input name="extra_img[flag]"   id="flag"   type="file" value="" size="30" /></p>
+		<p><label for="flag_h">%%FLAGGE%% (%%OVER%%):</label>	|BILD_FLAG_H|<input name="extra_img[flag_h]" id="flag_h" type="file" value="" size="30" /></p>
+		<p><label for="flag_a">%%FLAGGE%% (%%ACTIVE%%):</label>	|BILD_FLAG_A|<input name="extra_img[flag_a]" id="flag_a" type="file" value="" size="30" /></p>
+<!-- SUB=bgimg -->		<p><label for="hintergrund">%%HINTERGRUND%%:</label>	|BILD_HINTERGRUND|<input id="hintergrund" name="extra_img[hintergrund]" type="file" value="" size="30" /></p><!-- /SUB -->
+		<p><input type="checkbox" name="languages[remove][|LANG_ID|]" value="1" />%%SPRACHE_LOESCHEN%%</p>
+		<p><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" />
+		<a class="btn back" href="|PHPSELF|?page=|REFERRER||SID|">%%ZURUECK%%</a></p>
+		</td></tr></table>
+	</form>
+<!-- /TPL -->
+<!-- TPL=sprachen -->
+	<h1>%%SPRACHEN_BEARBEITEN%%</h1>
+	<form action="|PHPSELF|" method="post">
+		<input type="hidden" name="page" value="|PAGE|" />
+		|PHPSESSID|
+		<table class="sortTable">
+			<thead><tr>
+			<tr><th>
+<!-- SUB=move -->		%%POS%%</th><th><!-- /SUB -->
+					%%SPRACHE%%</th>
+					<th>%%MELDUNGEN%%</th>
+<!-- SUB=3_translate --><th>%%VERWALTUNGSSEITEN%%</th><!-- /SUB -->
+<!-- SUB=1_dump_mysql --><th><a class="tog_chk export tooltip" title="%%ALLE_AUSWAEHLEN%%">%%EXPORT%%</a></th><!-- /SUB -->
+<!-- SUB=vis -->	<th><a class="tog_chk show tooltip" title="%%ALLE_AUSWAEHLEN%%" >%%ANZEIGEN%%</a></th><!-- /SUB -->
+<!-- SUB=rem -->	<th><a class="tog_chkx remove tooltip" title="%%ALLE_AUSWAEHLEN%%" >%%LOESCHEN%%</a></th><!-- /SUB -->
+				</tr></thead>
+			<tbody id="move_tr">|LANGUAGES|</tbody>
+		</table>
+		<p><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" />
+		(%%SPRACHEN_LOESCHEN%%)</p>
+	</form>
+	<p><a class="btn add" href="|PHPSELF|?page=|PAGE|&amp;languages%5bLANG_ID%5d=neu|SID|">%%NEUE_SPRACHE%%</a></p>
+<!-- /TPL -->
+<!-- TPL=zeilen -->
+		<tr class="zeile" id="lang_|LANG_ID|"><td>
+		<input type="hidden" name="languages[all_langs][]"  value="|LANG_ID|" />
+<!-- SUB=move -->	<input class="disabled"  id="lang_|LANG_ID|_position"  name="languages[position][|LANG_ID|]" size="4" style="text-align:right;" value="|POSITION|" />
+				&nbsp; <a href="#up" title="%%EINE_ZEILE_NACH_OBEN%%" rel="up" class="control tooltip"> - </a> &nbsp; <a href="#down" title="%%EINE_ZEILE_NACH_UNTEN%%" rel="down" class="control tooltip"> + </a></td>
+			<td class="dragHandle">
+<!-- /SUB -->
+				<h3 style="float:left;width:150px;margin-top:0"><a class="tooltip" title="%%BEARBEITEN%% - |LANG_INTL| (LANG_ID = |LANG_ID|)" href="|PHPSELF|?page=|PAGE|&amp;languages[LANG_ID]=|LANG_ID||SID|">|LANG_LOCAL|</a></h3></td>
+			<td><a class="tooltip" title="%%BEARBEITEN%% - %%MELDUNGEN%% (LANG_ID = |LANG_ID|)" href="|PHPSELF|?page=pages&amp;pages[PAGE_ID]=|MELDUNGEN_SEITE|&amp;pages[LANG_ID]=|LANG_ID||SID|">%%MELDUNGEN%%</a></td>
+<!-- SUB=3_translate -->	<td><a class="tooltip" title="%%BEARBEITEN%% - %%VERWALTUNGSSEITEN%% (LANG_ID = |LANG_ID|)" href="|PHPSELF|?page=|PAGE|&amp;trans[LANG_ID]=|LANG_ID|&amp;ref=|PAGE||SID|">%%BEARBEITEN%%</a></td><!-- /SUB -->
+<!-- SUB=1_dump_mysql -->	<td><input class="chk export tooltip" type="checkbox" title="%%SPRACHE_EXPORTIEREN%% - (LANG_ID = |LANG_ID|)" name="dump_lang[]" value="|LANG_ID|"></td><!-- /SUB -->
+<!-- SUB=vis -->			<td><input class="chk show" type="checkbox" name="languages[visibility][|LANG_ID|]" value="1" |VISIBLE| /></td><!-- /SUB -->
+<!-- SUB=rem -->			<td><input class="chkx remove" type="checkbox" name="languages[remove][|LANG_ID|]" value="1" /></td><!-- /SUB -->
+		</tr>
+<!-- /TPL -->

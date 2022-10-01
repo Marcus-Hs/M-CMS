@@ -1,0 +1,59 @@
+<!-- TPL=vlframe -->
+	<input type="hidden" name="section_length" value="|ANZABSCHNITTE|" />
+    <table class="sortTable cb" id="vorlage">
+    <!-- SUB=importsections --><label for="import">%%IMPORT%%:</label>	<textarea id="import" cols="50" rows="8" name="import"></textarea><br /><!-- /SUB -->
+        <tbody id="move_tr">
+            |VORLAGE|
+        </tbody>
+    </table><!-- /TPL -->
+<!-- TPL=abschnitt --><tr class="zeile" id="part_|PART_ID|" style="width:100%;"><td class="dragHandle">%%NR%%<br />|N|.</td><td>
+	<table>
+        <tr><td>%%POS%%<br />
+                <input type="number" name="part_attr[|PART_ID|][position]" id="part_|PART_ID|_position" class="pos" value="|POSITION|" size="4" />
+                <input type="hidden" name="part_attr[|PART_ID|][filled]" value="|FILLED|" />
+                <input type="hidden" name="part_attr[|PART_ID|][rfirst]" value="|FIRST|" />
+            </td><td>
+                <h2 class="trigger tooltip" id="trigger_part_|PAGE_ID|_|PART_ID|" title="%%KLICK_TOGGLE%%" |COLOR|>|FIRST|</h2>
+                <h4>&quot;|TITEL|&quot;, %%ABSCHNITT%%: |PART_ID|</h4>
+            </td><td class="tar">
+                <a class="tog_chk show tooltip"		   title="%%ALLE_AUSWAEHLEN%%">%%ANZEIGEN%%</a> <input type="checkbox" class="chk show tooltip"    title="%%ANZEIGEN%%"    name="part_attr[|PART_ID|][visibility]" value="1" |A_VISIBLE| /><br />
+                <a class="tog_chkx remove tooltip red" title="%%ALLE_AUSWAEHLEN%%">%%LOESCHEN%%</a> <input type="checkbox" class="chkx remove tooltip" title="%%LOESCHEN%%"    name="remove[]" value="|PART_ID|" />
+        </td></tr>
+        <tr><td colspan="3" style="width:700px;">	
+			<div class="toggle_container toggle_visible" id="toggle_part_|PAGE_ID|_|PART_ID|" style="width:100%;">|CONTENT|</div>
+		</td></tr>
+    </table>
+    <table class="details"><tr><td style="width:70%">
+			<p><label>%%VEROEFFENTLICHEN%%:</label><input type="date" name="part_attr[|PART_ID|][publish]" class="tar" value="|PUBLISH|" size="12" placeholder="[%%DATUMSFORMAT%%]" /><br />
+			<label>%%AUSBLENDEN%%:</label> 		<input type="date" name="part_attr[|PART_ID|][finish]"  class="tar" value="|FINISH|"  size="12" placeholder="[%%DATUMSFORMAT%%]" /><br />
+			<a class="tog_sel move tooltip"	   title="%%ALLE_AUSWAEHLEN%%">%%COPYMOVE%%</a> <select class="sel move tooltip"    title="%%COPYMOVE_SECTION%%" name="part_attr[|PART_ID|][move]"><option value="" ></option>|ENTRIES|</select></p>
+		</td><td>
+			<p><a href="javascript:" class="btn preview">%%VORSCHAU%%</a></p>
+		</td><td>
+			<!-- SUB=pages --><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" /><!-- /SUB -->
+	</td></tr></table>
+</td></tr><!-- /TPL -->
+<!-- TPL=sortierung --><p><label for="order_by">%%SORTIERUNG_DER_ABSCHNITTE%%</label>
+    <select name="pages_attr[order_by][|PAGE_ID|]" id="order_by" size="1"   >
+        <option value="PO_ASC"   #ORDER_PO_ASC#>%%POS_AUFSTEIGEND%%</option>
+        <option value="PO_DESC"	 #ORDER_PO_DESC#>%%POS_ABSTEIGEND%%</option>
+        <option value="AZ_ASC"	 #ORDER_AZ_ASC#>%%ABC_AUFSTEIGEND%%</option>
+        <option value="AZ_DESC"	 #ORDER_AZ_DESC#>%%ABC_ABSTEIGEND%%</option>
+        <option value="P_ASC"	 #ORDER_P_ASC#>%%ABSCHNITT_AUFSTEIGEND%%</option>
+        <option value="P_DESC"	 #ORDER_P_DESC#>%%ABSCHNITT_ABSTEIGEND%%</option>
+        <option value="PUB_ASC"	 #ORDER_PUB_ASC#>%%DATUM_AUFSTEIGEND%%</option>
+        <option value="PUB_DESC" #ORDER_PUB_DESC#>%%DATUM_ABSTEIGEND%%</option>
+        <option value="FIN_ASC"	 #ORDER_FIN_ASC#>%%ENDE_AUFSTEIGEND%%</option>
+        <option value="FIN_DESC" #ORDER_FIN_DESC#>%%ENDE_ABSTEIGEND%%</option>
+    </select><p>
+    <h2 class="trigger tooltip" title="%%KLICK_TOGGLE%%" id="trigger_visible">%%ABSCHNITTE%%</h2>
+<!-- /TPL -->
+<!-- TPL=vorgaben -->	<input type="hidden" name="bild[vorschaux]" 	value="|VORSCHAUX|" />
+	<input type="hidden" name="bild[vorschauy]" 	value="|VORSCHAUY|" />
+	<input type="hidden" name="bild[bildx]"			value="|BILDX|" />
+	<input type="hidden" name="bild[bildy]"			value="|BILDY|" />
+	<input type="hidden" name="bild[vorschaufixed]" value="|VORSCHAUFIXED|" />
+	<input type="hidden" name="bild[bildfixed]" 	value="|BILDFIXED|" />
+<!-- /TPL -->
+<!-- TPL=field --><p><label for="pages[|FIELD_NAME|]">|FIELD_LABEL|: </label><input size="50" name="pages[FIELD_NAME]" value="|FIELD_CONTENT|" /></p><!-- /TPL -->
+<!-- TPL=bilder --><img src="/|IPATH|" alt="|ALT|" title="|TITLE|" style="float:left;margin-right:5px;max-height:100px;" id="bild" /><br /><input type="checkbox" name="remove_img[]" value="|BILD_ID|" />%%LOESCHEN%%<!-- /TPL -->

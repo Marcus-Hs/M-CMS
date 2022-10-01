@@ -1,0 +1,164 @@
+<!-- TPL=vorgaben -->
+	<h1>%%VORGABEN_BEARBEITEN%%</h1>
+	<form action="|PHPSELF|" method="post" enctype="multipart/form-data">
+		<p class="cb"><input type="submit" style="float:none;" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" /></p>
+		<input type="hidden" name="page" value="|PAGE|" />
+		|PHPSESSID|
+		<h2 class="trigger tooltip" title="%%KLICK_TOGGLE%%" id="trigger_vgsize">%%GROESSENVORGABEN%%</h2>
+		<table class="toggle_container" id="toggle_vgsize"><tr><td>
+		<h3>%%BILDER%% (%%SEITEN%%)</h3>
+		<p><label for="VorschauX">%%VORSCHAU%%-%%BREITE%%: </label>	<input type="number" id="VorschauX" name="vorgaben[vorschauX]" size="6" value="|VORSCHAUX|" /> px<br />
+		<label for="VorschauY">%%VORSCHAU%%-%%HOEHE%%: </label>		<input type="number" id="VorschauY" name="vorgaben[vorschauY]" size="6" value="|VORSCHAUY|" /> px<br />
+		<label for="BildX">%%BREITE%%: </label>			<input type="number" id="BildX" name="vorgaben[bildX]" size="6" value="|BILDX|" /> px<br />
+		<label for="BildY">%%HOEHE%%: </label>			<input type="number" id="BildY" name="vorgaben[bildY]" size="6" value="|BILDY|" /> px<br />
+		<label for="vorschaufixed">%%FIXIERTE_SEITE%%<br />(%%VORSCHAU%%): </label>
+		<select id="vorschaufixed" name="vorgaben[vorschaufixed]" size="1">
+			<option value="fit"  ></option>
+			<option value="width"  |VORSCHAUFIXED_WIDTH| >%%BREITE%%</option>
+			<option value="height" |VORSCHAUFIXED_HEIGHT|>%%HOEHE%%</option>
+            <option value="cover"  |VORSCHAUFIXED_COVER| >%%COVER%%</option>
+		</select></p>
+		<p><label for="bildfixed">%%FIXIERTE_SEITE%%<br />(%%BILD%%): </label>
+		<select name="vorgaben[bildfixed]" id="bildfixed" size="1"   >
+			<option value="fit"  ></option>
+			<option value="width"  |BILDFIXED_WIDTH| >%%BREITE%%</option>
+			<option value="height" |BILDFIXED_HEIGHT|>%%HOEHE%%</option>
+            <option value="cover"  |BILDFIXED_COVER| >%%COVER%%</option>
+		</select></p>
+		</td><td>
+		<h3>%%GALERIEN%%</h3>
+		<p><label for="GalerievorschauX">%%VORSCHAU%%-%%BREITE%%:</label>	<input type="number" id="GalerievorschauX" name="vorgaben[galerievorschauX]" size="6" value="|GALERIEVORSCHAUX|" /> px<br />
+		<label for="GalerievorschauY">%%VORSCHAU%%-%%HOEHE%%:</label>		<input type="number" id="GalerievorschauY" name="vorgaben[galerievorschauY]" size="6" value="|GALERIEVORSCHAUY|" /> px<br />
+		<label for="GaleriebildX">%%BREITE%%: </label>						<input type="number" id="GaleriebildX" name="vorgaben[galeriebildX]" size="6" value="|GALERIEBILDX|" /> px<br />
+		<label for="GaleriebildY">%%HOEHE%%: </label>						<input type="number" id="GaleriebildY" name="vorgaben[galeriebildY]" size="6" value="|GALERIEBILDY|" /> px<br />
+		<label for="galerievorschaufixed">%%FIXIERTE_SEITE%%<br />(%%VORSCHAU%%): </label>
+		<select id="galerievorschaufixed" name="vorgaben[galerievorschaufixed]" size="1">
+			<option value="fit"  ></option>
+			<option value="width"  |GALERIEVORSCHAUFIXED_WIDTH| >%%BREITE%%</option>
+			<option value="height" |GALERIEVORSCHAUFIXED_HEIGHT|>%%HOEHE%%</option>
+            <option value="cover"  |GALERIEVORSCHAUFIXED_COVER| >%%COVER%%</option>
+		</select></p>
+		<p><label for="galeriefixed">%%FIXIERTE_SEITE%%<br />(%%BILD%%): </label>
+		<select name="vorgaben[galeriefixed]" id="galeriefixed" size="1"   >
+			<option value="fit"  ></option>
+			<option value="width"  |GALERIEFIXED_WIDTH| >%%BREITE%%</option>
+			<option value="height" |GALERIEFIXED_HEIGHT|>%%HOEHE%%</option>
+            <option value="cover"  |GALERIEFIXED_COVER| >%%COVER%%</option>
+		</select></p>
+		</td></tr>
+		<tr><td>
+		<h3>%%HINTERGRUND%%</h3>
+		<p><label for="hintergrundbildx">%%BREITE%%: </label>	<input type="number" id="hintergrundbildx" name="vorgaben[hintergrundbildx]" size="6" value="|HINTERGRUNDBILDX|"/> px<br />
+		<label for="hintergrundbildy">%%HOEHE%%: </label>		<input type="number" id="hintergrundbildy" name="vorgaben[hintergrundbildy]" size="6" value="|HINTERGRUNDBILDY|"/> px<br />
+		<label for="hintergrundfixed">%%FIXIERTE_SEITE%%: </label>
+		<select name="vorgaben[hintergrundfixed]" id="hintergrundfixed" size="1">
+			<option value="fit"  ></option>
+			<option value="width"  |HINTERGRUNDFIXED_WIDTH| >%%BREITE%%</option>
+			<option value="height" |HINTERGRUNDFIXED_HEIGHT|>%%HOEHE%%</option>
+            <option value="cover"  |HINTERGRUNDFIXED_COVER| >%%COVER%%</option>
+		</select></p>
+		</td><td>
+		<h3>%%HINTERGRUND2%%</h3>
+		<p><label for="hintergrund2bildx">%%BREITE%%: </label>	<input type="number" id="hintergrund2bildx" name="vorgaben[hintergrund2bildx]" size="6" value="|HINTERGRUND2BILDX|"/> px<br />
+		<label for="hintergrundbildy">%%HOEHE%%: </label>		<input type="number" id="hintergrund2bildy" name="vorgaben[hintergrund2bildy]" size="6" value="|HINTERGRUND2BILDY|"/> px<br />
+		<label for="hintergrund2fixed">%%FIXIERTE_SEITE%%: </label>
+		<select name="vorgaben[hintergrund2fixed]" id="hintergrund2fixed" size="1">
+			<option value="fit"  ></option>
+			<option value="width"  |HINTERGRUND2FIXED_WIDTH| >%%BREITE%%</option>
+			<option value="height" |HINTERGRUND2FIXED_HEIGHT|>%%HOEHE%%</option>
+            <option value="cover"  |HINTERGRUND2FIXED_COVER| >%%COVER%%</option>
+		</select></p>
+		</td></tr>
+		<tr><td>
+		<h3>%%MENU%%</h3>
+		<p><label for="MenuX">%%BREITE%%:</label>					<input type="number" id="MenuX" name="vorgaben[menubildx]" size="5" value="|MENUBILDX|"/> px<br />
+		<label for="MenuY">%%HOEHE%%:</label>						<input type="number" id="MenuY" name="vorgaben[menubildy]" size="5" value="|MENUBILDY|" /> px<br />
+		<label for="MenuvorschauX">%%VORSCHAU%%-%%BREITE%%:</label>	<input type="number" id="MenuvorschauX" name="vorgaben[menuvorschaux]" size="5" value="|MENUVORSCHAUX|"/> px<br />
+		<label for="MenuvorschauY">%%VORSCHAU%%-%%HOEHE%%:</label>	<input type="number" id="MenuvorschauY" name="vorgaben[menuvorschauy]" size="5" value="|MENUVORSCHAUY|" /> px<br />
+		<label for="menufixed">%%FIXIERTE_SEITE%%: </label>
+		<select name="vorgaben[menufixed]" id="menufixed" size="1">
+			<option value="fit"  ></option>
+			<option value="width"  |MENUFIXED_WIDTH| >%%BREITE%%</option>
+			<option value="height" |MENUFIXED_HEIGHT|>%%HOEHE%%</option>
+            <option value="cover"  |MENUFIXED_COVER| >%%COVER%%</option>
+		</select></p>
+		</td><td>
+		<h3>%%VIDEO%%</h3>
+		<p><label for="VideoX">%%BREITE%%: </label>	<input type="number" id="VideoX" name="vorgaben[VideoX]" size="6" value="|VIDEOX|"/> px<br />
+		<label for="VideoY">%%HOEHE%%: </label>		<input type="number" id="VideoY" name="vorgaben[VideoY]" size="6" value="|VIDEOY|" /> px</p>
+		</td></tr></table>
+		<h2 class="trigger tooltip" title="%%KLICK_TOGGLE%%" id="trigger_vgsys">%%SYSTEM%%</h2>
+		<table class="toggle_container" id="toggle_vgsys"><tr><td>
+		<h3>%%AUSGABEOPTIONEN%%</h3>
+		<label for="compress"   style="width:250px"><input type="checkbox" id="compress"   name="vorgaben[compress]"   value="1" |COMPRESS_CHK|   /> %%KOMPRIMIERUNG%%</label>
+		<label for="kategal"    style="width:250px"><input type="checkbox" id="kategal"	   name="vorgaben[kategal]"    value="1" |KATEGAL_CHK|    /> %%KATEGAL%%</label>
+		<label for="nohtmlsubp" style="width:250px"><input type="checkbox" id="nohtmlsubp" name="vorgaben[nohtmlsubp]" value="1" |NOHTMLSUBP_CHK| /> %%KEINE_HTML_UNTERSEITEN%%</label>
+		<label for="nonumsubp"  style="width:250px"><input type="checkbox" id="nonumsubp"  name="vorgaben[nonumsubp]"  value="1" |NONUMSUBP_CHK|  /> %%KEINE_NUM_UNTERSEITEN%%</label>
+		<label for="checkdate"  style="width:250px"><input type="checkbox" id="checkdate"  name="vorgaben[checkdate]"  value="1" |CHECKDATE_CHK|  /> %%DATUM_PRUEFEN%%</label>
+		<h3>%%SPEICHERN%% / %%ENTFERENEN%%</h3>
+		<label for="deluserpages"  style="width:250px"><input type="checkbox" id="deluserpages"  name="vorgaben[deluserpages]"  value="1" |DELUSERPAGES_CHK|  /> %%NUTZERSEITEN_MITENTFERNEN%%</label>
+		<h3>%%SESSION%%</h3>
+		<label for="set_session"  style="width:250px"><input type="checkbox" id="set_session"  name="vorgaben[set_session]"  value="1" |SET_SESSION_CHK|  /> %%SESSION_IMMER_STARTEN%%</label>
+		</td><td>
+		<h3>%%WEITERE_DATEN%%</h3>
+		<p><label for="tpl_path">%%PFAD_ZU_DEN_VORLAGEN%%: </label>		<input type="input" id="tpl_path" name="vorgaben[tpl_path]" value="|TPL_PATH|" /><br />
+		<label for="css_path">%%PFAD_ZU_DEN_STYLESHEETS%%: </label>		<input type="input" id="css_path" name="vorgaben[css_path]" value="|CSS_PATH|" /><br />
+		<label for="js_path">%%PFAD_ZUM_JAVASCRIPT%%: </label>			<input type="input" id="js_path"  name="vorgaben[js_path]"  value="|JS_PATH|" /><br />
+		<label for="img_path">%%PFAD_ZU_BILDERN%%: </label>				<input type="input" id="img_path" name="vorgaben[img_path]" value="|IMG_PATH|" /><br />
+		<label for="imgtitlerpl">%%BILDBESCHREIBUNG_ERSETZEN%%: </label><input type="checkbox" id="imgtitlerpl" name="vorgaben[imgtitlerpl]" value="1" |IMGTITLERPL_CHK| /></p>
+		</td></tr>
+		<tr><td>
+		<h3>%%FCKEDITOR%%</h3>
+		<p><label for="FontFormats">%%FONTFORMATS%%: </label><input type="input" id="FontFormats" name="vorgaben[FontFormats]" value="|FONTFORMATS|" /><br />
+		<label for="allowedtags">%%DISALLOWEDTAGS%%: </label><input type="input" id="disallowedtags" name="vorgaben[disallowedtags]" value="|DISALLOWEDTAGS|" /><br />
+		<label for="allowedtags">%%DISALLOWEDATTR%%: </label><input type="input" id="disallowedattr" name="vorgaben[disallowedattr]" value="|DISALLOWEDATTR|" /><br />
+		<label for="bodyid">%%BODYID%%: </label>			 <input type="input" id="bodyid"	  name="vorgaben[bodyid]" value="|BODYID|" /><br />
+		<label for="bodyclass">%%BODYCLASS%%: </label>		 <input type="input" id="bodyclass"	  name="vorgaben[bodyclass]" value="|BODYCLASS|" /></p>
+		<p><label for="ToolbarSet_1">%%TOOLBAR%% 1: </label>
+		<select name="vorgaben[select_TBS_1]" id="ToolbarSet_1" size="1">
+			<option value="custom" |SELECT_TBS_1_CUSTOM|>custom</option>
+			<option value="basic"  |SELECT_TBS_1_BASIC|>basic</option>
+			<option value="mini"   |SELECT_TBS_1_MINI|>mini</option>
+			<option value="micro"  |SELECT_TBS_1_MICRO|>micro</option>
+		</select><br />
+		<label for="ToolbarSet_2">%%TOOLBAR%% 2: </label>
+		<select name="vorgaben[select_TBS_2]" id="ToolbarSet_2" size="1">
+			<option value="custom" |SELECT_TBS_2_CUSTOM|>custom</option>
+			<option value="basic"  |SELECT_TBS_2_BASIC|>basic</option>
+			<option value="mini"   |SELECT_TBS_2_MINI|>mini</option>
+			<option value="micro"  |SELECT_TBS_2_MICRO|>micro</option>
+		</select></p>
+		</td><td style="padding:1.5em 1em 0 0;">
+		<p><label for="forceplain"	style="width:250px"><input type="checkbox" id="forceplain" name="vorgaben[forceplain]" value="1"  |FORCEPLAIN_CHK| /> %%NUR_TEXT_EINFUEGEN%%</label>
+		<label for="showblocks"		style="width:250px"><input type="checkbox" id="showblocks" name="vorgaben[showblocks]" value="1"  |SHOWBLOCKS_CHK| /> %%BLOECKE%%</label>
+		<label for="cleanword"		style="width:250px"><input type="checkbox" id="cleanword"  name="vorgaben[cleanword]"  value="1"  |CLEANWORD_CHK|  /> %%WORD_BEREINIGEN%%</label></p>
+		</td></tr>
+		<tr><td  style="padding:0 1em 0 0;">
+		<h3>%%TEXTFELD%%</h3>
+		<p><label for="texth">%%HOEHE%%:</label>			<input type="number" id="texth"    name="vorgaben[texth]"    size="5" value="|TEXTH|"/> px<br />
+		<label for="redtexth">%%REDUZIERTE_HOEHE%%:</label>	<input type="number" id="redtexth" name="vorgaben[redtexth]" size="5" value="|REDTEXTH|" /> px</p>	
+        </td><td style="padding:0 1em 0 0;">
+        <h3>%%VORLAGE%%</h3>
+		<p><textarea class="codemirror" id="Template" style="width:455px" name="vorgaben[template]">|TEMPLATE|</textarea></p>
+		</td></tr></table>
+|ADDVORGABEN|
+		<h2 class="trigger tooltip" title="%%KLICK_TOGGLE%%" id="trigger_vgo">%%VERWALTUNGSSPRACHE%%</h2>
+		<table class="toggle_container" id="toggle_vgo"><tr><td>
+		<p><label for="verwaltung_sprache">%%VERWALTUNGSSPRACHE%%: </label>
+		<select id="verwaltung_sprache" name="vorgaben[verwaltung_sprache]" style="width:auto;">
+			<option value="" >%%UNBEDINGT_AUSWAEHLEN%%</option>|VERWALTUNGSSPRACHE|
+		</select><!-- SUB=3_translate --><br />
+		<a class="tooltip" title="%%BEARBEITEN%% - %%VERWALTUNGSSEITEN%%" href="|PHPSELF|?page=3_translate&trans[LANG_ID]=§VERWALTUNG_SPRACHE§&amp;ref=|PAGE||SID|">%%BEARBEITEN%%</a><!-- /SUB --></p>
+		<p><label for="alle_sprachen">%%ALLE_SPRACHEN_ZEIGEN%%: </label>	<input type="checkbox" id="alle_sprachen"  name="vorgaben[alle_sprachen]" value="1"  |ALLE_SPRACHEN_CHK|  /> %%ZEIGEN%%</p>
+		</td></tr></table>
+		<p><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" /></p>
+	</form>
+<!-- /TPL -->
+<!-- TPL=addvg_top -->
+		<h2 class="trigger tooltip" title="%%KLICK_TOGGLE%%" id="trigger_vgspecial">%%BESONDERE_SEITEN%%</h2>
+		<table class="toggle_container" id="toggle_vgspecial"><tr><td style="padding:2em 1em 0 0;width:350px;">
+<!-- /TPL -->
+<!-- TPL=addvg_bottom -->
+		</table>
+<!-- /TPL -->
+<!-- TPL=option -->			<option value="|TPL_ID|" |TPL_|TPL_ID||>|TITEL|</option><!-- /TPL -->

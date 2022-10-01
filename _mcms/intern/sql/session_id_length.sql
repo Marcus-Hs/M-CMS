@@ -1,0 +1,1 @@
+ALTER TABLE `#PREFIX#_session` CHANGE `IP` `IP` VARCHAR(64) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;

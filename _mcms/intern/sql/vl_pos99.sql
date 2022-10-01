@@ -1,0 +1,1 @@
+ALTER TABLE `#PREFIX#vorlagen` CHANGE `position` `position` SMALLINT( 5 ) NOT NULL DEFAULT '99'

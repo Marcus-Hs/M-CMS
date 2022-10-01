@@ -1,0 +1,1 @@
+ALTER TABLE `#PREFIX#vorlagen` ADD `showanyway` TINYINT( 1 ) NOT NULL AFTER `showta` ;

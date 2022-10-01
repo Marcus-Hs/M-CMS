@@ -1,0 +1,67 @@
+<!-- TPL=kategorien -->
+	<h1>%%KATEGORIEN_BEARBEITEN%%</h1>
+	<form action="|PHPSELF|" method="post">
+		<input type="hidden" name="page" value="|PAGE|" />
+		|PHPSESSID|
+		<table class="sortTable">
+			<thead>
+				<tr>
+<!-- SUB=move -->		<th colspan="2">%%POS%%</th><!-- /SUB -->
+				<th>%%TITEL%%</th>
+				<th>%%SEITEN%%</th>
+<!-- SUB=vis -->	<th><a class="tog_chk visibility tooltip" title="%%ALLE_AUSWAEHLEN%%" >%%ANZEIGEN%%</a></th>
+					<th><a class="tog_sel private tooltip"	  title="%%ALLE_AENDERN%%"    >%%ZUGRIFF%%</a></th>
+					<th><a class="tog_chk follow tooltip"	  title="%%ALLE_AUSWAEHLEN%%" >%%FOLLOW%%</a></th><!-- /SUB -->
+<!-- SUB=rem -->	<th><a class="tog_chkx remove tooltip"	  title="%%ALLE_AUSWAEHLEN%%" >%%LOESCHEN%%</a></th><!-- /SUB -->
+				</tr>
+			</thead>
+			<tbody id="move_tr">|KATEGORIEN|</tbody>
+		</table>
+		<p><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" />
+		(%%ODER_KATEGORIEN_LOESCHEN%%)</p>
+	</form>
+	<p><a class="btn add" href="|PHPSELF|?page=|PAGE|&amp;kat%5bKAT_ID%5d=neu|SID|">%%NEUE_KATEGORIE%%</a></p>
+<!-- /TPL -->
+<!-- TPL=zeilen -->
+		<tr class="zeile" id="kat_|KAT_ID|"><td>
+		<input type="hidden" name="kat[all_kats][]"  value="|KAT_ID|" />
+<!-- SUB=move -->				<input class="disabled" id="kat_|KAT_ID|_position" name="kat[position][|KAT_ID|]" size="4" style="text-align:right;"  value="|POSITION|" />
+				 <br /><a href="#up" title="%%EINE_ZEILE_NACH_OBEN%%" rel="up" class="control tooltip"> - </a> &nbsp; <a href="#down" title="%%EINE_ZEILE_NACH_UNTEN%%" rel="down" class="control tooltip"> + </a>
+		</td><td class="dragHandle">&nbsp;</td><td>
+<!-- /SUB -->
+			<h3><a class="tooltip" title="%%BEARBEITEN%% - |BESCHREIBUNG| (KAT_ID = |KAT_ID|)" href="|PHPSELF|?page=|PAGE|&amp;kat[KAT_ID]=|KAT_ID||SID|">|TITEL|</a></h3>
+			</td><td>
+				<a class="tooltip" title="%%ZUGEORDNETE_SEITEN%% - (KAT_ID = |KAT_ID|)" href="|PHPSELF|?page=pages|IFSINGLE|&amp;KAT_ID=|KAT_ID||SID|">%%SEITEN%% (|ANZ|)</a>
+			</td>
+<!-- SUB=vis -->			<td><input class="chk visibility" type="checkbox" name="kat[visibility][|KAT_ID|]" value="1" |VISIBLE| /></td>
+							<td><select class="chk private" name="kat[status][|KAT_ID|][]" multiple="2">|STATUS|</select></td>
+							<td><input class="chk follow"  type="checkbox" name="kat[follow][|KAT_ID|]" value="1" |FOLLOW| /></td><!-- /SUB -->
+<!-- SUB=rem -->			<td><input class="chkx remove" type="checkbox" name="kat[remove][|KAT_ID|]" value="1" /></td><!-- /SUB -->
+		</tr>
+<!-- /TPL -->
+<!-- TPL=edit -->
+	<h1>%%KATEGORIE_BEARBEITEN%%</h1>
+	<form action="|PHPSELF|" name="seite" id="seite" method="post">
+		<input type="hidden" name="page" value="|PAGE|" />
+		<input type="hidden" name="kat[KAT_ID]" value="|KAT_ID|" />
+		|PHPSESSID|
+		<p><label for="kat[Titel]">%%TITEL%%:</label>				<input size="50" name="kat[Titel]" required="required" value="|TITEL|" />
+	|PREV| |NEXT|
+	<a href="|PHPSELF|?page=|PAGE|&amp;kat[KAT_ID]=|KAT_ID||SID|">%%NEU_LADEN%%</a> |
+	<a href="|PHPSELF|?page=|PAGE|&amp;kat[KAT_ID]=|KAT_ID|&amp;copy=true|SID|">%%KOPIEREN%%</a> |
+	<a href="|PHPSELF|?page=pages|IFSINGLE|&amp;KAT_ID=|KAT_ID||SID|">%%SEITEN%% (|ANZ|)</a></p>
+		<p><label for="kat[beschreibung]">%%BESCHREIBUNG%%:</label>	<input size="50" name="kat[beschreibung]" value="|BESCHREIBUNG|" /></p>
+		<!-- <p><label for="kat[Kurzname]">Kurzname:</label>		<input size="50" name="pages[Kurzname]" value="|KURZNAME|" /></p> -->
+		<p><label for="kat[position]">%%POSITION%%: </label>
+		<input size="3" name="kat[position]" value="|POSITION|" /> |
+		%%ANZEIGEN%%: <input type="checkbox" name="kat[visibility]" value="1" |VISIBLE| /> |
+		%%FOLLOW%%:   <input type="checkbox" name="kat[follow]" value="1" |FOLLOW| /> |
+		%%ZUGRIFF%%:  <select class="chk private" name="kat[status][]" multiple="2">|STATUS|</select></p>
+		<p><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" /><a class="btn back" href="|PHPSELF|?page=|REFERRER||SID|">%%ZURUECK%%</a></p>
+	</form>
+	<p><a class="btn add" href="|PHPSELF|?page=|PAGE|&amp;kat[KAT_ID]=neu|SID|">%%NEUE_KATEGORIE%%</a></p>
+<!-- /TPL -->
+<!-- TPL=meta_next --><link rel="next" href="|PHPSELF|?page=|PAGE|&amp;kat[KAT_ID]=|NEXT_ID||SID|" /><!-- /TPL -->
+<!-- TPL=meta_prev --><link rel="prev" href="|PHPSELF|?page=|PAGE|&amp;kat[KAT_ID]=|LAST_ID||SID|" /><!-- /TPL -->
+<!-- TPL=link_next --><a href="|PHPSELF|?page=|PAGE|&amp;kat[KAT_ID]=|NEXT_ID||SID|">%%FOLGE%%</a> |<!-- /TPL -->
+<!-- TPL=link_prev --><a href="|PHPSELF|?page=|PAGE|&amp;kat[KAT_ID]=|LAST_ID||SID|">%%VORIGE%%</a> |<!-- /TPL -->

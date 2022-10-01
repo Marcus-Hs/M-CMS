@@ -1,0 +1,1 @@
+ALTER TABLE `#PREFIX#abschnitte` ADD UNIQUE `section` (`PART_ID`,`PAGE_ID`,`LANG_ID`);

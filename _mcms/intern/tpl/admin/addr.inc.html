@@ -1,0 +1,149 @@
+<!-- TPL=main --><h1>%%PERSONEN%%</h1>
+	|MSG|
+	|INHALT|
+	|ADRESSEN|
+	|FOOTER|<!-- /TPL -->
+<!-- TPL=auswahl -->
+<form action="|PHPSELF|" method="post">
+	<input type="hidden" name="page" value="|PAGE|" />
+	|PHPSESSID|
+	<table id="auswahl"><tr><td>
+		<label for="status">%%STATUS%%:						<select name="search[status][]"	  id="status"   size="7" multiple="multiple"><option value="">%%ALLE_AUSWAEHLEN%%</option>|AUSWAHL|</select></label></td><td>
+<!-- SUB=lang -->		<label for="sprachen">%%SPRACHEN%%:	<select name="search[sprachen][]" id="sprachen" size="7" multiple="multiple"><option value="">%%ALLE_AUSWAEHLEN%%</option>|SPRACHEN|</select></label></td><td><!-- /SUB -->
+		|ADD_SEARCH|
+		<label for="psuche">%%SUCHE%%:						<input style="left:0;top:1.2em;width:10em" type="search" name="search[suche]" id="psuche" value="|SUCHBEGRIFF|" /></label></td><td>
+		<input type="submit" name="subpage[search]"  class="btn search tooltip" title="%%EINTRAEGE_FINDEN%%" value="%%SUCHEN%%" />
+	 <p><input type="submit" name="subpage[new]"     class="btn add tooltip"    title="%%NEU_ANLEGEN%%"      value="%%NEU%%" /></p>
+	</td></tr></table>
+</form>
+<!-- /TPL -->
+<!-- TPL=vorlage -->					<option value="|TPL_ID|" |TPL_ID_|TPL_ID||>|TITEL|</option><!-- /TPL -->
+<!-- TPL=kategorie -->					<option value="|KAT_ID|" |KAT_ID_|KAT_ID||>|TITEL|</option><!-- /TPL -->
+<!-- TPL=daten_start -->
+	<h1>%%PERSOENLICHE_DATEN%%</h1>
+	<form action="" method="post">
+	<input type="hidden" name="page" value="|PAGE|" />
+	<input type="hidden" name="subpage[change]" value="change" />
+	|PHPSESSID|
+	<input type="hidden" name="uid" value="|UID|" />
+<!-- /TPL -->
+<!-- TPL=daten_ende -->
+	<p><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" />
+	<!-- SUB=admin --><a class="btn back" href="|PHPSELF|?page=|REFERRER|&amp;subpage[search]=search&amp;auswahl=|AUSWAHL|&amp;status=|STATUS|&amp;person_ID=|UID||SID|">%%ZURUECK%%</a><!-- /SUB --></p>
+</form>
+<!-- /TPL -->
+<!-- TPL=daten_rights -->
+	<table><tr>
+		<th>%%DATEN%%</th>
+		<!-- SUB=status --><th><a href="|PHPSELF|?page=pages&amp;pages[PAGE_ID]=§STATUS_SEITE§|SID|">%%STATUS%%</a></th><!-- /SUB -->
+		<!-- SUB=rights --><th>%%BERECHTIGUNGEN%%</th><!-- /SUB -->
+		<!-- SUB=status --><th><a class="tog_chkx remove tooltip" title="%%ALLE_AUSWAEHLEN%%" style="color:red">%%LOESCHEN%%</a></th><!-- /SUB -->
+	</tr><tr>
+		<td><p>|DATEN|<br />
+				|SPRACHE|<br />
+				|EXTRA|</p>
+			  <p><a href="|PHPSELF|?page=|PAGE|&amp;subpage[passwort]=passwort&amp;person_id=|UID|&amp;ref=|PAGE|&amp;addref[subpage][change]=change&amp;addref[ID]=|UID||SID|">%%PASSWORT_AENDERN%%</a></p></td>
+		<!-- SUB=status --><td><p>|SHOWSTATUS|</p></td><!-- /SUB -->
+		<!-- SUB=rights --><td><p>|RECHTE|</p></td><!-- /SUB -->
+		<!-- SUB=status --><td><p><input type="checkbox" name="person[remove][]" class="chkx remove tooltip" title="%%LOESCHEN%% (|ID|)" value="|ID|" /></p></td><!-- /SUB -->
+	</tr></table>
+<!-- /TPL -->
+<!-- TPL=addr_table --><form action="|PHPSELF|" method="post">
+	|PHPSESSID|
+	<input type="hidden" name="page" value="|PAGE|" />
+	<input type="hidden" name="search[status][]" value="|STATUS|" /> 
+	<p><input type="submit" name="send" class="btn save" value="%%EINTRAGEN%%" /></p>
+	|SUBNAV|
+	<table class="output cb">
+		<tr>
+			<th><a class="tog_chk mails tooltip" title="%%ALLE_WAEHLEN%%" >%%MAIL%%</a></th>
+			<th>%%DATEN%%</th><th>%%BEARBEITEN%%</th><th>%%SONSTIGES%%</th>
+			<!-- SUB=status --><th><a href="|PHPSELF|?page=pages&amp;pages[PAGE_ID]=§STATUS_SEITE§|SID|">%%STATUS%%</a></th><!-- /SUB -->
+			<!-- SUB=rights --><th>%%RECHTE%%</th><!-- /SUB -->
+			<!-- SUB=status --><th><a class="tog_chkx remove tooltip" style="color:red" title="%%ALLE_AUSWAEHLEN%%">%%LOESCHEN%%</a></th><!-- /SUB -->
+		</tr>
+		|ADDRCONTENTS|
+	</table>
+	|SUBNAV|
+	<p><input type="submit" class="btn email" name="subpage[sendmails]" value="%%EMAILS_AN_DIESE_EMPFAENGER%%" />
+	   <input type="submit" class="btn email" name="subpage[listmails]" value="%%EMAILS_ALS_LISTE%%" />
+	   <input type="submit" class="btn save" name="send" class="btn save" value="%%EINTRAGEN%%" /></p>
+</form><!-- /TPL -->
+<!-- TPL=addr_row_rights -->
+	<tr style="border-bottom:2px solid #ddd;">
+		<td><input type="hidden" name="person[id][]" value="|PERSON_ID|" /><p>
+			<input type="checkbox" class="chk mails" |CHK_MAIL| name="mails[]" title="%%FUER_MAIL_AUSWAEHLEN%%" value="|PERSON_ID|" /></p></td>
+		<td><p><strong><a style="color:|COLOR|" href="|PHPSELF|?page=|PAGE|&amp;subpage[change]=change&amp;ID=|PERSON_ID|&amp;ref=|PAGE||SID|">|NAME| |NACHNAME|</a></strong> (|LOGIN||KUNDEN_NR|)<br />
+			<a href="mailto:|EMAIL|">|EMAIL|</a><br />
+			|STRASSE| |HAUSNUMMER|<br />
+			|PLZ| |ORT|<br />
+			%%TEL%%.: |TELEFON|<br />
+			%%MOBIL%%: |MOBIL|</p>
+		</td>
+		<td><p><a href="|PHPSELF|?page=|PAGE|&amp;subpage[change]=change&amp;ID=|PERSON_ID|&amp;ref=|PAGE||SID|">%%EINTRAG_AENDERN%%</a><br />
+			   <a href="|PHPSELF|?page=|PAGE|&amp;subpage[passwort]=passwort&amp;person_id=|PERSON_ID|&amp;ref=|PAGE||SID|">%%PASSWORT_AENDERN%%</a></p>
+			<p>|PAGES|</p>
+			<p>|INUSE|</p>
+		</td>
+		<td><p>|EXTRA|</p></td>
+		<!-- SUB=status --><td><p>|SHOWSTATUS|</p></td><!-- /SUB -->
+		<!-- SUB=rights --><td><p>|SONSTIGES|</p></td><!-- /SUB -->
+		<!-- SUB=status --><td><p><input type="checkbox" name="person[remove][]" class="chkx remove tooltip" title="%%LOESCHEN%% (|ID|)" value="|ID|" /></p></td><!-- /SUB -->
+	</tr>
+<!-- /TPL -->
+<!-- TPL=addr_row_pages --><p><a href="|PHPSELF|?page=pages&amp;person_id=|PERSON_ID|&amp;ref=|PAGE|&amp;addref[suche]=|PERSON_ID||SID|">%%ZUGEHOERIGE_SEITEN%% (|PAGES|)</a></p><!-- /TPL -->
+<!-- TPL=addr_row_inuse --><p>%%IN_BEARBEITUNG%%:<br />
+	<input type="checkbox" class="tooltip" name="release[]" title="%%SEITE_FREIGEBEN%%" value="|USED_IDS|" />
+	<a href="|PHPSELF|?page=pages&amp;PAGE_ID=|USED_IDS||SID|">|USED_TITLES|</a></p><!-- /TPL -->
+<!-- TPL=list -->
+	<p>|ANZ| %%ADRESSEN_AUSGEWAEHLT%%.</p>
+	<p><textarea name="body" rows="10" style="width:700px;">|MAILS|</textarea></p>
+<!-- /TPL -->
+<!-- TPL=mail -->
+<p>|ANZ| %%ADRESSEN_AUSGEWAEHLT%%</p>
+<form action="" method="post" enctype="multipart/form-data">
+	|PHPSESSID|
+	<input type="hidden" name="page" value="|PAGE|" />
+	<input type="hidden" name="mails" id="mails" value="|MAILS|" />
+	<p style="width:600px"><label for="betreff">%%BETREFF%%: </label><input type="text" name="ueberschrift" value="|UEBERSCHRIFT|" size="30" />
+	<label for="body">%%NACHRICHT%%: </label><br />					 <input type="hidden" id="height_textarea" value="500px" />
+	<textarea name="text" rows="10" class="fck2" id="textarea">|TEXT|</textarea></p>
+	<p><input class="btn send" type="submit" name="send" value="%%SENDEN%%" /></p>
+</form>
+<!-- /TPL -->
+<!-- TPL=person -->
+	<form action="" method="post">
+		|PHPSESSID|
+		<input type="hidden" name="page" value="personen" />
+		|PROFILE|
+		<p><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" /><a href="|PHPSELF|?page=person&amp;person_id=neu|SID|">%%NEUE_PERSON_ANLEGEN%%</a></p>
+	</form>
+<!-- /TPL -->
+<!-- TPL=status -->	<input type="radio" name="person[status][|ID|]" value="#VALUE#" #CHK_VALUE# /> #KEY# <br /><!-- /TPL -->
+<!-- TPL=loeschen --><input type="checkbox" name="person[remove][]" class="tooltip" title="%%LOESCHEN%%" value="|ID|" /><br /><!-- /TPL -->
+<!-- TPL=status_logout --><input type="checkbox" name="person[logout][]" value="|ID|" /> <span style="color:red;">%%LOGOUT%%</span><br /><!-- /TPL -->
+<!-- TPL=status_ki -->
+	<input type="checkbox" name="person[kontakt][|ID|]" #EMAIL# value="1" />%%KONTAKT%% |
+	<input type="radio" name="person[impressum]" #IMPRESSUM# value="|ID|" />%%IMPRESSUM%%<br /><br /><!-- /TPL -->
+<!-- TPL=status_verification -->
+	<input type="hidden" name="person[verified][|ID|]" value="0" /><input type="checkbox" name="person[verified][|ID|]" #VERIFIED# value="1" />%%VERIFIED%%<br /><br /><!-- /TPL -->
+<!-- TPL=passwort -->
+	<h1>%%PASSWORT_AENDERN%%</h1>
+	<form action="|PHPSELF|?page=|PAGE|&amp;subpage[passwort]=passwort" method="post" enctype="multipart/form-data">
+		|PHPSESSID|
+		|ADMIN|
+		<p><a href="|PHPSELF|?page=|PAGE|&amp;subpage[passwort]=passwort&amp;sendto&amp;person_id=|UID||SID|">%%PASSWORT_ZUSCHICKEN%%</a></p>
+		<p><label for="password">%%NEUES_PASSWORT%%</label>		<input value="" type="password" name="passwort_neu1" id="password" />
+		<br /><label for="password2">%%WIEDERHOLUNG%%</label>	<input value="" type="password" name="passwort_neu2" id="password2" /></p>
+		<p>%%MINDESTENS_SECHS_ZEICHEN%%</p>
+		<p><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" />
+		<!-- SUB=admin --><a class="btn back" href="|PHPSELF|?page=|REFERRER||SID|">%%ZURUECK%%</a><!-- /SUB --></p>
+	</form>
+<!-- /TPL -->
+<!-- TPL=rights -->
+<label for="rights_#KEY#_#ATTR#">#TITEL#</label>
+<select id="rights_#KEY#_#ATTR#" name="rights[#KEY#][#ATTR#][]" multiple="multiple" size="5"><!-- /SUB -->
+	<option value="" ></option>
+	#SELECTION#
+</select>
+<!-- /TPL -->

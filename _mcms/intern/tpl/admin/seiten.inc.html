@@ -1,0 +1,216 @@
+<!-- TPL=seitentitel -->%%SEITEN%%<!-- /TPL -->
+<!-- TPL=seite -->
+	<h2>%%SEITE_BEARBEITEN%% (|FL_MENU|, |SHORT|)</h2>
+	<p><a href="|PHPSELF|?page=|PAGE||SID|" class="tooltip" title="%%ALLE_SEITEN_DER_ERSTEN_EBENE%%">%%ALLE_SEITEN%%</a>
+	<!--	| <a href="|PHPSELF|?page=|PAGE|&amp;parent_ID=|PARENT_ID||SID|" class="tooltip" title="%%ALLE_SEITEN_DIESER_EBENE%%">%%NACHBARSEITEN%%</a> -->
+	| <a href="|PHPSELF|?page=|PAGE||LASTGET||SID|" class="tooltip" title="%%ALLE_SEITEN_WIE_IN_LETZTER_UEBERSICHT%%">%%SEITEN_DIESER_AUSWAHL%%</a>
+    | <a href="|PHPSELF|?page=|PAGE|&amp;KAT_ID=|KAT_ID||SID|" class="tooltip" title="%%ALLE_SEITEN_DIESER_KATEGORIE%%">%%SEITEN_DIESER_KATEGORIE%%</a>
+	<!-- SUB=neu -->|LIKETHIS|<!-- /SUB -->
+	|PREV| |NEXT| </p>
+	<form action="|PHPSELF||FORMGET|" onsubmit="clean_submit()" method="post" enctype="multipart/form-data">
+		<div class="edit_page_col_1">
+		|PHPSESSID|
+        <input type="hidden" name="pages_attr[all_pages][]"                value="|PAGE_ID|" />
+        <input type="hidden" name="tpl_id2"         id="tpl_id2"           value="|TPL_ID|" />
+        <input type="hidden" name="kat_id2"         id="kat_id2"           value="|KAT_ID|" />
+        <input type="hidden" name="parent_id2"      id="parent_id2"        value="|PARENT_ID|" />
+        <input type="hidden" name="pages[PAGE_ID]"  id="page_id"           value="|PAGE_ID|" /> 
+        <input type="hidden" name="pages[LANG_ID]"  id="lang_id"           value="|LANG_ID|" />
+        <input type="hidden" name="pages_attr[parent_ID][|PAGE_ID|]"       value="|PARENT_ID|" />
+        <input type="hidden" name="pages_attr[owner_ID][|PAGE_ID|]"        value="|OWNER_ID|" />
+        <input type="hidden" name="MAX_FILE_SIZE"    id="max_file_size"    value="§MAX_FILE_SIZE§" />
+        <input type="hidden" name="MAX_FILE_UPLOADS" id="max_file_uploads" value="§MAX_FILE_UPLOADS§" />
+	<!-- SUB=lang -->		|EDIT|<!-- /SUB -->
+			|RELAOD|
+		<div class="edit_page">
+			<fieldset class="attr one">
+				<label class="tooltip" title="%%FENSTERTITEL%%"	  for="Titel">%%TITEL%%:</label>
+					<input id="Titel" size="40" 					placeholder="%%TITEL%%"		maxlength="127" name="pages[Titel]" required value="|TITEL|" /><br />
+					<!--<textarea id="Titel" cols="37" rows="3"		placeholder="%%TITEL%%"		maxlength="127"	name="pages[Titel]" required="required">|TITEL|</textarea><br />-->
+				<label class="tooltip" title="%%SEITENUEBERSCHRIFT%%"		for="ueberschrift">%%UEBERSCHRIFT%%&nbsp;<small>(%%OPTIONAL%%)</small>:</label>
+					<!--<textarea id="ueberschrift" cols="37" rows="3"		placeholder="%%UEBERSCHRIFT%%"	maxlength="255"	name="pages[Ueberschrift]">|UEBERSCHRIFT|</textarea>-->
+					<input 	  id="ueberschrift"	size="40"					placeholder="%%UEBERSCHRIFT%%"	maxlength="255"	name="pages[Ueberschrift]"	value="|UEBERSCHRIFT|" />
+			</fieldset>
+			<fieldset class="attr two">
+                <h4 class="trigger tooltip" id="toggle_meta" title="%%METADATEN%% - %%KLICK_TOGGLE%%">%%METADATEN%%</h4>
+                <div class="toggle_container toggle_visible toggle_meta">
+                        <label class="tooltip" title="%%SEITENBESCHREIBUNG%%"		for="beschreibung">%%BESCHREIBUNG%%:</label>	<textarea placeholder="%%BESCHREIBUNG%%" id="beschreibung"	cols="37" rows="3"			maxlength="168"	name="pages[beschreibung]">|BESCHREIBUNG|</textarea><br />
+                        <label class="tooltip" title="%%ERSCHEINT_IM_MENUE%%"		for="Menu">%%MENUEEINTRAG%%:</label>			<input 	  placeholder="%%MENUEEINTRAG%%" id="Menu"			size="40"					maxlength="127"	name="pages[Menu]"			value="|MENU|" /><br />
+                    </fieldset>
+                    <fieldset class="attr details">
+                        <label class="tooltip" title="%%TASTENKUERZEL_FESTLEGEN%%"	for="ak">%%TASTENKUERZEL%%:</label>				<input 	  placeholder="|AK2|"			 id="ak"			size="3" style="width:2em"	maxlength="1" 	name="pages[ak]"			value="|AK|" /><br />
+                        <label class="tooltip" title="%%SEITE_ERSTELLT_AM%%"		for="insdate">%%ERSTELLT_AM%%:</label>			<input	  placeholder="[%%DATUMSFORMAT%%]" id="insdate" type="date"  size="14" name="pages[insdate]" value="|INSDATE|" />
+            <!-- SUB=move -->		<br /><label for="position">%%POSITION%%:</label> <input id="position" size="4" name="pages_attr[position][|PAGE_ID|]" value="|POSITION|" />
+            <!-- /SUB -->
+            <!-- SUB=vis -->		<br /><input type="checkbox" name="pages_attr[visibility][|PAGE_ID|]" value="1" |VISIBLE| /> %%ANZEIGEN%%
+            <!-- /SUB -->
+                </div>
+            </fieldset>
+            <fieldset class="three">
+                <p><a href="javascript:" class="btn preview">%%VORSCHAU%%</a>
+            <!-- SUB=pages -->	<input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" /><!-- /SUB -->
+            <!-- SUB=Xifref --><a class="btn back" href="|PHPSELF|?page=|REFERRER||SID|">%%ZURUECK%%</a><!-- /SUB --></p>
+            <!-- SUB=wa -->		<p class="cb trigger tooltip btn pre" id="trigger_wa" title="%%KONFIGURATIONSOPTIONEN%%"><a>%%WEITERE_ANGABEN%%</a></p>
+            <!-- /SUB -->
+                <div class="toggle_container" id="toggle_wa">
+            <!-- SUB=mimg -->
+                    <p><label for="menuebild">%%MENUEBILD%%:</label>		<input id="menuebild" name="extra_img[menu]" type="file" value="" size="30" />|BILD_MENU|</p>
+                    <p><label for="menuebild2">%%MENUEBILD2%%:</label>		<input id="menuebild2" name="extra_img[menu2]" type="file" value="" size="30" />|BILD_MENU2|</p>
+                <!-- /SUB -->
+                <!-- SUB=bgimg -->
+                    <p><label for="hintergrund">%%HINTERGRUND%%:</label>	<input id="hintergrund" name="extra_img[hintergrund]" type="file" value="" size="30" />|BILD_HINTERGRUND|</p>
+                <!-- /SUB -->
+                <!-- SUB=bgimg2 -->
+                    <p><label for="hintergrund2">%%HINTERGRUND2%%:</label>	<input id="hintergrund2" name="extra_img[hintergrund2]" type="file" value="" size="30" />|BILD_HINTERGRUND2|</p>
+                <!-- /SUB -->
+                    <table>
+                <!-- SUB=admin --><tr><td><label for="dateiname">%%DATEINAME%%: <input style="position:relative;left:0" id="dateiname" size="15" name="pages[Kurzname]" value="|KURZNAME|" /></label>
+                    </td><td><label for="fix_kn">%%FIX%%: <input type="checkbox" class="tooltip" id="fix_kn" name="pages[fix_kn]" value="1" |FIX_KN| /></label></td></tr>
+                    <tr><td>|AUTOR|</td><td>|BESITZER|</td></tr>
+                <!-- /SUB -->
+                    <tr><td>
+                <!-- SUB=tpl -->|VORLAGEN|<!-- /SUB -->
+                <!-- SUB=2_templates --><a href="|PHPSELF|?page=2_templates&amp;ref=|PAGE|&amp;addref[pages][PAGE_ID]=|PAGE_ID|&amp;addref[pages][LANG_ID]=|LANG_ID|&amp;tmpl[TPL_ID]=|TPL_ID||SID|">%%BEARBEITEN%%</a>
+                <!-- /SUB -->
+                        </td><td>
+                <!-- SUB=kats -->|KATEGORIEN|<!-- /SUB -->
+                <!-- SUB=1_categories --><a href="|PHPSELF|?page=1_categories&amp;ref=|PAGE|&amp;addref[pages][PAGE_ID]=|PAGE_ID|&amp;&kat[KAT_ID]=|KAT_ID||SID|">%%BEARBEITEN%%</a>
+                <!-- /SUB -->
+                <!-- SUB=subp -->	</td></tr>
+                    <tr><td><label for="parent_id">%%UNTERSEITE_VON%%: <select id="parent_id" name="pages_attr[parent_ID][|PAGE_ID|]"><option value="" ></option>|ENTRIES|</select></label><br />
+                        <br class="cb" /><a href="|PHPSELF|?page=|PAGE|&amp;parent_ID=|PAGE_ID||SID|">%%UNTERSEITEN%% (|KIDS_COUNT|)</a> |
+                        <a id="pagelink_parent" href="|PHPSELF|?page=|PAGE|&amp;pages[PAGE_ID]=|PARENT_ID||SID|">%%SEITE%%</a>
+                <!-- /SUB -->
+                    </td></tr></table>
+                </div>
+            </fieldset>
+            <fieldset class="four">
+                <div class="toggle_container toggle_visible toggle_meta" style="width:100%;clear:both;"><hr />
+                    <p class="tooltip" title="%%TOOLTIP_STICHWORTE%%">%%INFO_STICHWORTE%%:</p>
+                    <div id="cloudtext" style="display:none;"></div>
+                    <div id="cloud"></div>
+                    <p><a href="#" onclick="fckfind('');" class="tooltip small" style="color:#000" title="%%MARKIERUNGEN_VON_BEGRIFFEN_ENTFERNEN%%">%%MARKIERUNGEN_ENTFERNEN%%</a></p>
+                </div>
+            </fieldset>
+		</div><div class="edit_page_col_2">
+            <fieldset class="five">
+			<div id="fck_textarea">
+				<input type="hidden" id="ta_height" name="ta_height" value="|TA_HEIGHT|" />
+				<input type="hidden" id="ta_direction" name="ta_direction" value="|DIRECTION|" />
+				<textarea id="textarea" class="fck" style="width:100%" cols="30" rows="|ROWS|" name="pages[text]">|TEXT|</textarea>
+			</div>
+            </fieldset>
+            <fieldset>
+			|VLFRAME|
+            </fieldset>
+            <fieldset>
+			|PLUGIN|
+            </fieldset>
+		</div>
+	</form>
+	<div style="display:none;"><textarea id="tpl_styles" cols="30" rows="5">|TPL_STYLES|</textarea>	</div>
+<!-- /TPL -->
+<!-- TPL=vllink --><br class="cb" /><a id="pagelink_tpl_id" href="|PHPSELF|?page=|PAGE|&amp;TPL_ID=|TPL_ID||SID|">%%SEITEN%%</a><!-- /TPL -->
+<!-- TPL=katlink --><br class="cb" /><a id="pagelink_kat_id" href="|PHPSELF|?page=|PAGE|&amp;KAT_ID=|KAT_ID||SID|">%%SEITEN%%</a><!-- /TPL -->
+<!-- TPL=reload --><p><a href="|PHPSELF|?page=|PAGE|&amp;pages[PAGE_ID]=|PAGE_ID|&amp;pages[LANG_ID]=|LANG_ID||SID|" class="tooltip" title="%%LETZTE_GESPEICHERTE_VERSION%%">%%NEU_LADEN%%</a>
+	<!-- SUB=neu --> | <a href="|PHPSELF|?page=|PAGE|&amp;pages[PAGE_ID]=|PAGE_ID|&amp;pages[LANG_ID]=|LANG_ID|&amp;send=copy|SID|" class="tooltip" title="%%NEUE_SEITE_MIT_DIESEN_INHALTEN%%">%%KOPIEREN%%</a><!-- /SUB -->
+	<!-- SUB=rem --> | <a style="color:#f00;" href="|PHPSELF|?page=pages&amp;send=remove&amp;pages[remove][]=|PAGE_ID|&amp;pages[LANG_ID]=|LANG_ID|&amp;parent_ID=|PARENT_ID||SID|" id="remove_|PAGE_ID|" onclick="page_remove(this.id);return false;">%%ENTFERNEN%%</a><!-- /SUB --></p>
+<!-- /TPL -->
+<!-- TPL=meta_next --><link rel="next" href="|PHPSELF|?page=|PAGE|&amp;pages[PAGE_ID]=|PAGE_ID|&amp;pages[LANG_ID]=|LANG_ID||SID|" /><!-- /TPL -->
+<!-- TPL=meta_prev --><link rel="prev" href="|PHPSELF|?page=|PAGE|&amp;pages[PAGE_ID]=|PAGE_ID|&amp;pages[LANG_ID]=|LANG_ID||SID|" /><!-- /TPL -->
+<!-- TPL=link_next -->| <a |COLOR| href="|PHPSELF|?page=|PAGE|&amp;pages[PAGE_ID]=|PAGE_ID|&amp;pages[LANG_ID]=|LANG_ID||SID|" class="tooltip" title="%%WEITERBLAETTERN%% (|COUNT|)">%%FOLGESEITE%%</a><!-- /TPL -->
+<!-- TPL=link_prev -->| <a |COLOR| href="|PHPSELF|?page=|PAGE|&amp;pages[PAGE_ID]=|PAGE_ID|&amp;pages[LANG_ID]=|LANG_ID||SID|" class="tooltip" title="%%ZURUECKBLAETTERN%% (|COUNT|)">%%VORGAENGERSEITE%%</a><!-- /TPL -->
+<!-- TPL=link_likethis -->| <a href="|PHPSELF|?page=|PAGE|&amp;OLD_ID=|PAGE_ID|&amp;pages[PAGE_ID]=neu&amp;pages[LANG_ID]=|LANG_ID||SID|" class="tooltip" title="%%NEUE_SEITE_NACH_DIESEM_VORBILD%%">%%NEUE_SEITE%%</a><!-- /TPL -->
+<!-- TPL=seiten -->
+	<!-- SUB=neu --><h1>%%NEUE_SEITE_ANLEGEN%%</h1>
+		<form action="|PHPSELF|?page=pages|SID|" method="post">
+			|PHPSESSID|
+			<input type="hidden" name="pages[PAGE_ID]" value="neu" />
+			<table class="auswahl"><tr>
+				<td><label for="parent">%%UNTERSEITE_VON%%:</label><select id="parent" name="pages_attr[parent_ID]"><option value="" ></option>|ENTRIES|</select></td>
+				<td>|KATEGORIEN|</td>
+				<td>|VORLAGEN|</td>
+	<!-- SSUB=lang --><td>|SPRACHEN|</td><!-- /SSUB -->
+				<td><input type="submit" name="anlegen" class="btn add" value="%%ANLEGEN%%" /></td>
+			</tr></table>
+		</form>
+	<!-- /SUB --><h1>%%SEITEN_BEARBEITEN%%</h1>
+		<form action="|PHPSELF||FORMGET|" method="post">
+		|PHPSESSID|
+		|SEITEN|
+		</form>
+		<!-- SUB=ifref --><p><a class="btn back" href="|PHPSELF|?page=|REFERRER||SID|">%%ZURUECK%%</a></p><!-- /SUB -->
+<!-- /TPL -->
+<!-- TPL=kategorie --><select class="sel kat" name="pages_attr[KAT_ID][|PAGE_ID|]">|KATS|</select><!-- /TPL -->
+<!-- TPL=edit --> <a href="|PHPSELF|?page=|PAGE|&amp;pages[PAGE_ID]=|PAGE_ID|&amp;pages[LANG_ID]=|LANG_ID||SID|" class="|EXISTS| tooltip" title="%%SEITE_BEARBEITEN%% - (|SHORT|, LANG_ID = |LANG_ID|, ID = |PAGE_ID|)">|SHORT|</a><!-- /TPL -->
+<!-- TPL=tabelle --><p>
+	<!-- SUB=pages --><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" /><!-- /SUB -->
+	<!-- SUB=Xifref --><a class="btn back" href="|PHPSELF|?page=|REFERRER||SID|">%%ZURUECK%%</a><!-- /SUB --></p>
+	|SUBNAV|
+    <table class="sortTable cb">
+		<thead>
+		    <tr>
+	<!-- SUB=move -->		<th colspan="2"><a class="tog_txt pos tooltip" title="%%ALLE_AENDERN%%">%%POS%%</a></th><!-- /SUB -->
+		<th>%%TITEL%%</th>
+	<!-- SUB=lang -->	<th class="trigger tooltip" id="toggle_lang" title="%%SPRACHEN%% - %%KLICK_TOGGLE%%">&gt;</th>
+						<th class="toggle_container toggle_visible toggle_lang">%%SPRACHEN%%</th><!-- /SUB -->
+	<!-- SUB=kats -->	<th class="trigger tooltip" id="toggle_kat" title="%%KATEGORIEN%% - %%KLICK_TOGGLE%%">&gt;</th>
+						<th class="toggle_container toggle_visible toggle_kat"><a class="tog_sel kat tooltip" title="%%ALLE_AENDERN%%">%%KATEGORIEN%%</a></th><!-- /SUB -->
+	<!-- SUB=subp -->	<th class="trigger tooltip" id="toggle_subp" title="%%UNTERSEITE_VON%% - %%KLICK_TOGGLE%%">&gt;</th>
+						<th class="toggle_container toggle_subp"><a class="tog_sel subp tooltip" title="%%ALLE_AENDERN%%">%%UNTERSEITE_VON%%</a></th><!-- /SUB -->
+	<!-- SUB=tpl -->	<th class="trigger tooltip" id="toggle_vls" title="%%VORLAGE%% - %%KLICK_TOGGLE%%">&gt;</th>
+						<th class="toggle_container toggle_vls"><a class="tog_sel vl tooltip" title="%%ALLE_AENDERN%%">%%VORLAGE%%</a></th><!-- /SUB -->
+	<!-- SUB=admin -->	<th class="trigger tooltip" id="toggle_owner" title="%%BESITZER%% - %%KLICK_TOGGLE%%">&gt;</th>
+						<th class="toggle_container toggle_owner"><a class="tog_sel owner tooltip" title="%%ALLE_AENDERN%%">%%BESITZER%%</a></th><!-- /SUB -->
+	<!-- SUB=vis -->	<th><a class="tog_chk show tooltip"   title="%%ALLE_AUSWAEHLEN%% - (%%BETRIFFT_ALLE_SPRACHEN%%)">%%ANZEIGEN%%</a></th><!-- /SUB -->
+	<!-- SUB=rem -->	<th><a class="tog_chkx remove tooltip" title="%%ALLE_AUSWAEHLEN%% - (%%BETRIFFT_ALLE_SPRACHEN%%)">%%LOESCHEN%%</a></th><!-- /SUB -->
+		    </tr>
+		</thead>
+		<tbody id="move_tr">
+			|SEITEN_ZEILEN|
+		</tbody>
+    </table>
+	|SUBNAV|
+    <!-- SUB=pages --><p><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" /></p><!-- /SUB -->
+    |ADD|
+<!-- /TPL -->
+<!-- TPL=zeile --><tr class="zeile" id="page_|PAGE_ID|">
+		<input type="hidden" name="pages_attr[all_pages][]"  value="|PAGE_ID|" />
+	<!-- SUB=move -->			<td><input class="disabled pos" id="page_|PAGE_ID|_position" name="pages_attr[position][|PAGE_ID|]" size="4" style="text-align:right;" value="|POSITION|" />
+				<div>&nbsp; <a href="#up" title="%%EINE_ZEILE_NACH_OBEN%%" rel="up" class="control tooltip"> - </a> &nbsp; <a href="#down" title="%%EINE_ZEILE_NACH_UNTEN%%" rel="down" class="control tooltip"> + </a></div>
+			</td><td class="dragHandle">&nbsp;</td>
+	<!-- /SUB -->
+			<td><input type="hidden" name="pages_menu[|PAGE_ID|]" value="|MENU|" />
+				<h3 title="|TITEL|"><a href="|PHPSELF|?page=pages&amp;pages[PAGE_ID]=|PAGE_ID||SID|" class="tooltip" title="%%BEARBEITEN%% (ID = |PAGE_ID|) - |TITEL| -  - |BESCHREIBUNG|">|MENU|</a></h3>
+	<!-- SUB=subp -->	<a class="expand tooltip" id="kids_|PAGE_ID|" href="|PHPSELF|?page=pages&amp;parent_ID=|PAGE_ID||SID|" title="%%ZUGEHOERIGE_UNTERSEITEN%% - (parent_ID = |PAGE_ID|)">%%UNTERSEITEN%% (|KIDS_COUNT|)</a><!-- /SUB -->
+			</td>
+	<!-- SUB=lang -->	<td class="dragHandle"></td><td class="toggle_container toggle_visible toggle_lang">|EDIT_|PAGE_ID||</td><!-- /SUB -->
+	<!-- SUB=kats -->	<td class="dragHandle"></td><td class="toggle_container toggle_visible toggle_kat">
+							|KATS|
+							<div class="smaller">
+								<!-- SSUB=1_categories --><a href="|PHPSELF|?page=1_categories&amp;ref=|PAGE|&amp;addref[pages][PAGE_ID]=|PAGE_ID|&amp;&kat[KAT_ID]=|KAT_ID||SID|">%%BEARBEITEN%%</a> | <!-- /SSUB -->				
+								<a class="tooltip" href="|PHPSELF|?page=|PAGE|&amp;KAT_ID=|KAT_ID||SID|" title="%%SEITEN_DIESER_KATEGORIE%% - (KAT_ID = |KAT_ID|)">%%SEITEN%%</a>
+							</div>
+						</td>
+	<!-- /SUB -->
+	<!-- SUB=subp -->	<td class="dragHandle"></td><td class="toggle_container toggle_subp">
+							<select class="sel subp"  name="pages_attr[parent_ID][|PAGE_ID|]"><option value=""></option>|ENTRIES|</select>
+							<div class="smaller"><a class="tooltip" href="|PHPSELF|?page=|PAGE|&amp;pages[PAGE_ID]=|PARENT_ID||SID|" title="%%SEITE_ANZEIGEN%% - (ID = |PARENT_ID|)">%%SEITE%%</a></div>
+						</td>
+	<!-- /SUB -->
+	<!-- SUB=tpl -->	<td class="dragHandle"></td><td class="toggle_container toggle_vls">
+							<select class="sel vl"  name="pages_attr[TPL_ID][|PAGE_ID|]">|VLAUSWAHL|</select>
+							<div class="smaller">
+								<!-- SSUB=2_templates --><a href="|PHPSELF|?page=2_templates&amp;ref=|PAGE|&amp;addref[pages][PAGE_ID]=|PAGE_ID|&amp;addref[pages][LANG_ID]=|LANG_ID|&amp;tmpl[TPL_ID]=|TPL_ID||SID|">%%BEARBEITEN%%</a> | <!-- /SSUB -->
+								<a class="tooltip" href="|PHPSELF|?page=|PAGE|&amp;TPL_ID=|TPL_ID||SID|" title="%%SEITEN_ANZEIGEN%% - (TPL_ID = |TPL_ID|)">%%SEITEN%%</a>
+							</div>
+						</td>
+	<!-- /SUB -->
+	<!-- SUB=admin -->	<td class="dragHandle"></td><td class="toggle_container toggle_owner">
+							<select class="chk owner" name="pages_attr[owner_ID][|PAGE_ID|]">|BESITZER|</select>
+							<div class="smaller"><a class="tooltip" href="|PHPSELF|?page=|PAGE|&amp;uid=|PERSON_ID||SID|" title="%%SEITEN_ANZEIGEN%% - (person_ID = |PERSON_ID|)">%%SEITEN%%</a></div>
+						</td>
+	<!-- /SUB -->
+	<!-- SUB=vis -->	<td><input type="checkbox" class="chk show"    name="pages_attr[visibility][|PAGE_ID|]" value="1" |VISIBLE| /></td><!-- /SUB -->
+	<!-- SUB=rem -->	<td><input type="checkbox" class="chkx remove" name="pages[remove][|PAGE_ID|]" value="|PAGE_ID|" /></td><!-- /SUB -->
+</tr><!-- /TPL -->

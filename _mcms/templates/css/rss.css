@@ -1,0 +1,72 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	display: block;
+}
+rss {
+	display: block;
+	font-family: sans-serif;
+	background-color: §COLORBG§;
+	color: §COLORTEXT§;
+	font-size: 13px;
+}
+channel > title {
+	font-size: 24px;
+	font-weight: bold;
+	margin: 10px 0px;
+}
+channel {
+	width: 728px;
+	margin-left: auto;
+	margin-right: auto;
+}
+channel > item {
+	background-color: §COLORBG§;
+	border: 1px solid §COLORACCENT§;
+	padding: 10px;
+	margin-bottom: 15px;
+}
+	item > link, item > pubDate {
+		color: #888888;
+		font-size: 12px;
+		border-bottom: 1px solid §COLORACCENT§;
+		margin-bottom: 5px;
+		padding-bottom: 5px;
+	}
+	item > link,item > pubDate {
+    	min-height: 3rem;
+		display: flex;
+		align-items: flex-end;
+	}
+	item > link {
+		float: right;
+		width: 66.66%;
+	}
+	item > pubDate {
+		float: left;
+		width: 33.33%;
+	}
+	item > title {
+		color: §COLORACCENT§;
+		font-size: 18px;
+		margin-bottom: 5px;
+	}
+	item > description {
+		margin-bottom: 10px;
+	}
+	item > category {
+		background-color: §COLORBG§;
+		border: 1px solid §COLORACCENT§;
+		border-radius: 3px;
+		padding: 2px 4px;
+		display: inline-block;
+		color: §COLORTEXT§;
+		transition: color 0.3s linear;
+	}
+	item > category:hover {
+		color: §COLORTEXT§;
+	}
+
+lastBuildDate, language, guid, channel > link {
+	display: none;
+}

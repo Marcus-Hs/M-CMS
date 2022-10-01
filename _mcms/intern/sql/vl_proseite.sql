@@ -1,0 +1,1 @@
+ALTER TABLE `#PREFIX#vorlagen` ADD `proseite` SMALLINT (5) NOT NULL AFTER `anzahl`

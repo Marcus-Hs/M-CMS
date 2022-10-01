@@ -1,0 +1,17 @@
+<!-- TPL=translate --><h1 class="trigger tooltip" title="%%KLICK_TOGGLE%%" id="trigger_hidden">%%UEBERSETZUNG_BEARBEITEN%%</h1>
+<form action="" method="post">
+	<input type="hidden" name="page" value="|PAGE|" />
+	<input type="hidden" name="trans[LANG_ID]" value="|LANG_ID|" />
+	|PHPSESSID|
+	<p>%%AUTOMATISCH_UEBERSETZEN%%: <a href="javascript:" onclick="do_translate_all('de','|SHORT|');">|LANG_LOCAL|</a></p>
+	<p><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" /><a class="btn back" href="|PHPSELF|?page=|REFERRER||SID|">%%ZURUECK%%</a></p>
+	<div class="cb transate">|TLDATA|</div>
+	<p style="padding-top:1em;"><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" /><a class="btn back" href="|PHPSELF|?page=|REFERRER||SID|">%%ZURUECK%%</a></p>
+</form>
+<!-- /TPL -->
+<!-- TPL=tl_file --><div style="float:left;width:430px"><h4 class="trigger" id="trigger_tl|I|" style="margin-top:1em;color:#090;clear:right;">|FN|</h4>
+					<div class="toggle_container toggle_hidden" id="toggle_tl|I|">|OUTROWS|</div></div>
+<!-- /TPL -->
+<!-- TPL=tl_row --><label for="id_|I|">|VALUE|</label><textarea id="id_|I|" |STYLE| class="translate" size="35" name="transl[|LANG_ID|][|KEY|]">|ROWDATA|</textarea>
+	<a href="javascript:" onclick="do_translate('#id_|I|','de','|SHORT|');">|SHORT|</a>
+<!-- /TPL -->

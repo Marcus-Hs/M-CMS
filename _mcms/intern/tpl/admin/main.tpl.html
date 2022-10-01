@@ -1,0 +1,61 @@
+<!-- TPL=admin_body --><!DOCTYPE html>
+<html lang="§SHORT§">
+<head>
+	<meta charset="§CODEPAGE§" />
+	<meta name="viewport" content="width=device-width, minimum-scale=0.75, initial-scale=1">
+	<meta name="msapplication-tap-highlight" content="no" />
+	<title>|PAGETITLE|</title>
+	|FAVICON|
+    |ADMMETA|
+	|ADDSTYLES|
+</head>
+<body class="|DIRECTION| |PAGE|">
+|MENU|
+<div id="text">
+	|ERROR|
+	|TEXT|
+</div>
+	§PHPSESSID2§
+	|ADDSCRIPTS|
+</body>
+</html><!-- /TPL -->
+<!-- TPL=menu -->
+		<div id="adm_menu">
+			<ul class="admin_menu adm_row3">
+				<li><a class="btn logout tooltip" title="%%ABMELDEN%%" href="|PHPSELF|?lang_id=|LANG_ID|&logout=logout|SID|">%%LOGOUT%%</a></li>
+			</ul>
+			<ul class="admin_menu adm_row0">
+				<li><a class="btn logo tooltip" title="%%STARTSEITE%%" target="_blank" href="/|SID|">%%STARTSEITE%%</a>
+			</ul>
+			<ul class="admin_menu adm_row1">
+		<!-- SUB=pqp -->	<ul><li style="width:80px"><a class="btn" target="_blank" href="/?set_session=pqp|SID|">%%PROFILING%%</a></li></ul><!-- /SUB -->
+				</li>
+				|EDITOR_MENU|
+				|ADMIN_MENU|
+		<!-- SUB=admin -->		<li #ACTIVE_ADRESSEN#><a class="btn pers tooltip" title="%%BENUTZERVERWALTUNG%%" href="|PHPSELF|?page=adressen|SID|">%%PERSONEN%%</a>|MENUSTATUS|</li><!-- /SUB -->
+		<!-- SUB=editor -->		<li #ACTIVE_PERSON#><a class="btn pers tooltip" title="%%PERSOENLICHE_DATEN_BEARBEITEN%%" href="|PHPSELF|?page=person|SID|">%%PERSON%%</a></li>
+								<li #ACTIVE_PASSSWORT#><a class="btn pwd tooltip" title="%%PASSWORT_AENDERN%%" href="|PHPSELF|?page=passwort|SID|">%%PASSWORT%%</a></li><!-- /SUB -->
+			</ul>
+			<ul class="admin_menu adm_row2">
+				|ADMIN2_MENU|
+				|USER_MENU|
+			</ul>
+		</div>
+	<!-- SUB=such -->	<div style="clear:both;padding-top:1em;width:400px;" class="nip"><form action="|PHPSELF|" method="get">
+			<input type="hidden" name="page" value="1_pages" />
+			|PHPSESSID|
+			<table><tr><td><label for="kat">%%KATEGORIE%%:</label><br /><select id="kat" name="KAT_ID"><option value="">%%ALLE_AUSWAEHLEN%%</option>|KATS|</select>
+			</td><td><label for="suche">%%SUCHE%%:</label><br /><input type="search" name="suche" id="suche" value="|SUCHE|" />
+			</td><td><input type="submit" name="send" class="btn search" value="%%SUCHEN%%" /></td></tr></table>
+		</form></div><!-- /SUB -->
+<!-- /TPL -->
+<!-- TPL=zeile --><li #ACTIVE_|ATTR2|#><a |STYLE| class="btn ico_|ATTR| tooltip" title="|TITEL| - %%BEARBEITEN%%" href="|PHPSELF|?page=|PAGE||SID|">|TITEL|</a>|EXTRA|</li><!-- /TPL -->
+<!-- TPL=popupzeile --><li #ACTIVE_|ATTR2|#><a |STYLE| class="btn ico_|ATTR| tooltip" title="|TITEL| - %%IN_NEUEM_FENSTER_OEFFNEN%%" target="_blank" href="|PAGE|">|TITEL|</a></li><!-- /TPL -->
+<!-- TPL=pages --><li><a href="|PHPSELF|?page=|PAGE|&amp;pages[PAGE_ID]=|PAGE_ID|&amp;pages[LANG_ID]=|LANG_ID||SID|" class="tooltip" title="%%BEARBEITEN%% (ID = |PAGE_ID|) - |TITEL|">|MENU|</a><!-- /TPL -->
+<!-- TPL=kids --><a href="|PHPSELF|?page=|PAGE|&amp;parent_ID=|PAGE_ID|&amp;pages[LANG_ID]=|LANG_ID||SID|" class="tooltip" title="%%UNTERSEITEN_ANZEIGEN%%">-&gt;</a><!-- /TPL -->
+<!-- TPL=sprachen -->		<li><a class="tooltip sublang |DIRECTION|" title="%%BEARBEITEN%% (LANG_ID = |LANG_ID|) - |BESCHREIBUNG|" |LS| href="|PHPSELF|?page=|PAGE|&amp;languages[LANG_ID]=|LANG_ID||SID|">|TITEL|</a>
+	<!-- SUB=3_translate -->-&gt; <a class="tooltip small" title="%%BEARBEITEN%% (LANG_ID = |LANG_ID| - %%VERWALTUNGSSEITEN%%)" href="|PHPSELF|?page=|PAGE|&amp;trans[LANG_ID]=|LANG_ID|&amp;ref=languages|SID|">%%VERWALTUNGSSEITEN%%</a></li><!-- /SUB -->
+<!-- /TPL -->
+<!-- TPL=vorlage -->		<li><a class="tooltip" title="%%BEARBEITEN%% (TPL_ID = |TPL_ID|) - |BESCHREIBUNG|" href="|PHPSELF|?page=|PAGE|&amp;tmpl[TPL_ID]=|TPL_ID||SID|">|TITEL|</a> -> <a class="tooltip" title="%%ZUGEORDNETE_SEITEN%%" href="|PHPSELF|?page=pages|IFSINGLE|&amp;TPL_ID=|TPL_ID||SID|">%%SEITEN%% (|ANZ|)</a></li><!-- /TPL -->
+<!-- TPL=kategorie -->		<li><a class="tooltip" title="%%BEARBEITEN%% (KAT_ID = |KAT_ID|) - |BESCHREIBUNG|" href="|PHPSELF|?page=|PAGE|&amp;kat[KAT_ID]=|KAT_ID||SID|">|TITEL|</a> -> <a class="tooltip" title="%%ZUGEORDNETE_SEITEN%%" href="|PHPSELF|?page=pages|IFSINGLE|&amp;KAT_ID=|KAT_ID||SID|">%%SEITEN%% (|ANZ|)</a></li><!-- /TPL -->
+<!-- TPL=kats -->			<option value="|KAT_ID|" |KAT_|KAT_ID||>|TITEL|</option><!-- /TPL -->

@@ -1,0 +1,1 @@
+ALTER TABLE `#PREFIX#seiten` CHANGE `Stichworte` `insdate` DATETIME NOT NULL

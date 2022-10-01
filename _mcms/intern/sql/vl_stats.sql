@@ -1,0 +1,1 @@
+ALTER TABLE `#PREFIX#vorlagen` ADD `stats` TINYINT( 1 ) NOT NULL DEFAULT '1' AFTER `cache`

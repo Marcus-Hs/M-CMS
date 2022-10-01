@@ -1,0 +1,1 @@
+ALTER TABLE `#PREFIX#vorlagen` ADD `prefix` VARCHAR( 15 ) NOT NULL AFTER `showta`

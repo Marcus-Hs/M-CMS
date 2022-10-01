@@ -1,0 +1,133 @@
+<!-- TPL=vorlagen --><h1>%%VORLAGEN_BEARBEITEN%%</h1>
+<form action="|PHPSELF|" method="post">
+	|PHPSESSID|
+	<input type="hidden" name="page" value="|PAGE|" />
+	<p><a class="btn add" href="|PHPSELF|?page=|PAGE|&tmpl[TPL_ID]=neu|SID|">%%NEU_ANLEGEN%%</a>
+	<input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" />
+	(%%ODER_VORLAGEN_LOESCHEN%%)</p>
+	<table class="sortTable cb">
+		<thead>
+			<tr><!-- SUB=move -->
+				<th>%%POS%%</th><!-- /SUB -->
+				<th>%%TITEL%%</th>
+				<th><a class="tog_chk cache tooltip" title="%%ALLE_AUSWAEHLEN%%">%%CACHE%%</a></th>
+				<th><a class="tog_chk stats tooltip" title="%%ALLE_AUSWAEHLEN%%">%%STATS%%</a></th>
+				<th><a class="tog_chk showta tooltip" title="%%ALLE_AUSWAEHLEN%%">%%TEXTFELD%%</a></th>
+				<!--<th><a class="tog_chk showanyway tooltip" title="%%ALLE_AUSWAEHLEN%%">%%IMMER%%</a></th>-->
+				<th>%%SEITEN%%</th>
+    <!-- SUB=1_admin_mysql -->	<th><a class="tog_chk export tooltip" title="%%ALLE_AUSWAEHLEN%%">%%EXPORT%%</a></th><!-- /SUB -->
+    <!-- SUB=rem -->		<th><a class="tog_chkx remove tooltip" title="%%ALLE_AUSWAEHLEN%%">%%LOESCHEN%%</a></th><!-- /SUB -->
+			</tr>
+		</thead>
+		<tbody id="move_tr">
+			|VORLAGEN|
+		</tbody>
+	</table>
+	<p>
+	<a class="btn add" href="|PHPSELF|?page=|PAGE|&tmpl[TPL_ID]=neu|SID|">%%NEU_ANLEGEN%%</a>
+	<input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" />
+	(%%ODER_VORLAGEN_LOESCHEN%%)</p>
+</form><!-- /TPL -->
+<!-- TPL=zeilen --><tr class="zeile" id="tmpl_|TPL_ID|"><td>
+		<input type="hidden" name="tmpl[all_tpls][]"  value="|TPL_ID|" />
+    <!-- SUB=move -->	<input class="disabled" id="tmpl_|TPL_ID|_position" name="tmpl[position][|TPL_ID|]" size="4" style="text-align:right;" value="|POSITION|" />
+            &nbsp; <a href="#up" title="%%EINE_ZEILE_NACH_OBEN%%" rel="up" class="control tooltip"> - </a> &nbsp; <a href="#down" title="%%EINE_ZEILE_NACH_UNTEN%%" rel="down" class="control tooltip"> + </a></td>
+        <td class="dragHandle">
+    <!-- /SUB -->
+        <h3 style="float:left;width:150px;margin-top:0"><a class="tooltip" title="%%BEARBEITEN%% - |BESCHREIBUNG| (TPL_ID = |TPL_ID|)" href="|PHPSELF|?page=|PAGE|&amp;tmpl[TPL_ID]=|TPL_ID||SID|">|TITEL|</a></h3>
+        </td><td><input class="chk cache tooltip" title="%%SEITEN_ZWISCHENSPEICHERN%%" type="checkbox" name="tmpl[cache][|TPL_ID|]"  |CHK_CACHE| value="1" />
+        </td><td><input class="chk stats tooltip" title="%%SEITENBESUCHE_ZAEHLEN%%"    type="checkbox" name="tmpl[stats][|TPL_ID|]"  |CHK_STATS| value="1" />
+        </td><td><input class="chk showta tooltip" title="%%TEXTFELD_ANZEIGEN%%"       type="checkbox" name="tmpl[showta][|TPL_ID|]" |CHK_SHOWTA| value="1" />
+     <!--   </td><td><input class="chk showanyway tooltip" title="%%IMMER_ANZEIGEN%%"       type="checkbox" name="tmpl[showanyway][|TPL_ID|]" |CHK_SHOWANYWAY| value="1" />-->
+        </td><td><a class="tooltip" title="%%ZUGEORDNETE_SEITEN%% - (TPL_ID = |TPL_ID|)" href="|PHPSELF|?page=pages|IFSINGLE|&amp;TPL_ID=|TPL_ID||SID|">%%SEITEN%% (|ANZ|)</a>
+    <!-- SUB=1_admin_mysql -->	</td><td class="dragHandle"><input class="chk export tooltip" type="checkbox" title="%%VORLAGE_EXPORTIEREN%% - (TPL_ID = |TPL_ID|)" name="dump_tpl[]" value="|TPL_ID|"></a><!-- /SUB -->
+    <!-- SUB=rem -->		</td><td class="dragHandle"><input class="chkx remove" type="checkbox" name="tmpl[remove][|TPL_ID|]" value="1" /><!-- /SUB -->
+        </td></tr>
+<!-- /TPL -->
+<!-- TPL=edit --><h1>%%VORLAGE_BEARBEITEN%%</h1>
+    <form action="|PHPSELF|" method="post" class="templates">
+        |PHPSESSID|
+        <input type="hidden" name="page" value="|PAGE|" />
+        <input type="hidden" name="tmpl[TPL_ID]" value="|TPL_ID|" />
+        |SPACHE|
+        <p><label for="Titel">%%TITEL%%: </label>	<input id="Titel" size="50" name="tmpl[Titel]" required value="|TITEL|" />|EDIT|
+        |PREV| |NEXT|
+        <a href="|PHPSELF|?page=|PAGE|&amp;tmpl[TPL_ID]=|TPL_ID||SID|">%%NEU_LADEN%%</a> |
+        <a href="|PHPSELF|?page=|PAGE|&amp;tmpl[TPL_ID]=|TPL_ID|&amp;copy=true|SID|">%%KOPIEREN%%</a> |
+        <a href="|PHPSELF|?page=pages|IFSINGLE|&amp;TPL_ID=|TPL_ID||SID|">%%SEITEN%% (|ANZ|)</a></p>
+    
+        <p><label for="Beschreibung">%%BESCHREIBUNG%%: </label>	<input id="Beschreibung" size="50" name="tmpl[Beschreibung]" value="|BESCHREIBUNG|" /></p>
+<h4 class="trigger tooltip" id="toggle_presets" title="%%VORGABEN%% - %%KLICK_TOGGLE%%">%%VORGABEN%%</h4>
+                <div class="toggle_container toggle_presets">
+        <table class="auswahl"><tr>
+		<th colspan="2">%%SEITEN%%</th></tr><tr>
+        <td><label for="cache">%%CACHE%%:</label> 			<input id="cache" 	 type="checkbox" name="tmpl[cache]" |CHK_CACHE| value="1" /><br />
+			<label for="stats">%%STATS%%:</label> 			<input id="stats" 	 type="checkbox" name="tmpl[stats]" |CHK_STATS| value="1" /><br />
+		    |BDYCLSS|</td>
+        <td><label for="showta">%%TEXTFELD%%:</label> 		<input id="showta" 	 type="checkbox" name="tmpl[showta]" |CHK_SHOWTA| value="1" /><br />
+			<label for="position">%%POSITION%%:</label>		<input id="position" type="number" size="4" name="tmpl[position][|TPL_ID|]" value="|POSITION|" /></td>
+        </tr><tr>
+		<td colspan="2">|TPLPREFIX|</td>
+        </tr></table>
+        <table class="auswahl"><tr><th colspan="2">%%ABSCHNITTE%%</th></tr><tr>
+        <td><label for="Anzahl">%%ANZAHL%%:</label>			<input id="Anzahl"   type="number" size="3" name="tmpl[Anzahl]" 	value="|ANZAHL|" /><br />
+			<label for="neu">%%NEUE_ABSCHNITTE%%:</label>	<input id="neu"		 type="number" size="3" name="tmpl[neu]" 		value="|NEU|" /></td>
+        <td><label for="proseite">%%PRO_SEITE%%:</label>	<input id="proseite" type="number" size="4" name="tmpl[proseite]"  	value="|PROSEITE|" />
+			|SHOWANYWAY|</td>
+        </tr></table>
+        <table class="auswahl"><tr><th colspan="2">%%VORSCHAU%%</th></tr><tr>
+        <td><label for="GalerievorschauX">%%BREITE%%:</label>	<input type="number" id="VorschauX" name="tmpl[VorschauX]" size="6" value="|VORSCHAUX|" /> px</td>
+        <td><label for="GalerievorschauY">%%HOEHE%%: </label>	<input type="number" id="VorschauY" name="tmpl[VorschauY]" size="6" value="|VORSCHAUY|" /> px</td>
+		</tr><tr>
+        <td colspan="2"><label for="vorschaufixed">%%FIXIERTE_SEITE%%:</label>
+        <select id="vorschaufixed" name="tmpl[vorschaufixed]" size="1">
+            <option value="fit" ></option>
+            <option value="width"  |VORSCHAUFIXED_WIDTH| >%%BREITE%%</option>
+            <option value="height" |VORSCHAUFIXED_HEIGHT| >%%HOEHE%%</option>
+            <option value="cover"  |VORSCHAUFIXED_COVER| >%%COVER%%</option>
+        </select></td>
+		 </tr></table>
+        <table class="auswahl"><tr><th colspan="2">%%BILD%%</th></tr><tr>
+        <td><label for="BildX">%%BREITE%%:</label>	<input type="number" id="BildX" name="tmpl[BildX]" size="6" value="|BILDX|" /> px</td>
+        <td><label for="BildX">%%HOEHE%%: </label>		<input type="number" id="BildY" name="tmpl[BildY]" size="6" value="|BILDY|" /> px</td>
+		</tr><tr>
+        <td colspan="2"><label for="bildfixed">%%FIXIERTE_SEITE%%: </label>
+        <select id="bildfixed" name="tmpl[bildfixed]" size="1"   >
+            <option value="fit"  ></option>
+            <option value="width"  |BILDFIXED_WIDTH| >%%BREITE%%</option>
+            <option value="height" |BILDFIXED_HEIGHT|  >%%HOEHE%%</option>
+            <option value="cover"  |BILDFIXED_COVER| >%%COVER%%</option>
+        </select></td>
+        </tr></table>
+</div>
+       	<p><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" /><a class="btn back" href="|PHPSELF|?page=|REFERRER||SID|">%%ZURUECK%%</a></p>
+
+<h4 class="trigger tooltip" id="toggle_tpl" title="%%VORLAGE%% - %%KLICK_TOGGLE%%"><label for="Template">%%VORLAGE%%</label></h4>
+                <div class="toggle_container toggle_visible toggle_tpl">
+        <p><textarea class="codemirror" id="Template" rows="8" cols="120" name="tmpl[Template]">|TEMPLATE|</textarea></p>
+</div>
+
+<h4 class="trigger tooltip" id="toggle_css" title="Styles - %%KLICK_TOGGLE%%"><label for="styles">Styles</label></h4>
+                <div class="toggle_container toggle_visible toggle_css">
+        <p>	  <textarea class="codemirror" id="styles"   rows="8" cols="120" name="tmpl[styles]">|STYLES|</textarea></p>
+</div>
+
+<h4 class="trigger tooltip" id="toggle_script" title="Styles - %%KLICK_TOGGLE%%"><label for="script">Javascript</label></h4>
+                <div class="toggle_container toggle_visible toggle_script">
+        <p>	  <textarea class="codemirror" id="script"   rows="8" cols="120" name="tmpl[script]">|SCRIPT|</textarea></p>
+</div>
+        <p><label for="JS">JS: </label><br />					  <textarea id="JS"   rows="3" cols="120" name="tmpl[JS]"  />|JS|</textarea></p>
+        <p><label for="CSS">CSS: </label><br />					  <textarea id="CSS"  rows="3" cols="120" name="tmpl[CSS]"  />|CSS|</textarea></p>
+        <p><input type="submit" name="send" class="tooltip btn save" title="%%TOOLTIP_EINTRAGEN%%" value="%%EINTRAGEN%%" />
+        <a class="btn back" href="|PHPSELF|?page=|REFERRER||SID|">%%ZURUECK%%</a></p>
+    </form>
+    <p><a class="btn add" href="|PHPSELF|?page=|PAGE|&tmpl[TPL_ID]=neu&submit=Anlegen|SID|">%%NEU_ANLEGEN%%</a></p>
+<!-- /TPL -->
+<!-- TPL=tplprefix --><label for="prefix">%%PREFIX%%: </label>			<input id="prefix"     name="tmpl[prefix]" value="|PREFIX|" /><!-- /TPL -->
+<!-- TPL=showanyway --><label for="showanyway">%%IMMER_ZEIGEN%%:</label><input id="showanyway" type="checkbox" name="tmpl[showanyway]" |CHK_SHOWANYWAY| value="1" /><!-- /TPL -->
+<!-- TPL=bdyclss --><label for="bodyclass">%%BODYCLASS%%: </label>		<input id="bodyclass"  size="8"        name="tmpl[bodyclass]" value="|BODYCLASS|" /><!-- /TPL -->
+<!-- TPL=lang --><a href="|PHPSELF|?page=|PAGE|&amp;tmpl[TPL_ID]=|TPL_ID|&amp;tmpl[LANG_ID]=|LANG_ID||SID|" class="|EXISTS| tooltip" title="%%VORLAGE_BEARBEITEN%% - (|SHORT|, LANG_ID = |LANG_ID|, TPL_ID = |TPL_ID|)">|SHORT|</a> | <!-- /TPL -->
+<!-- TPL=meta_next --><link rel="next" href="|PHPSELF|?page=|PAGE|&amp;tmpl[TPL_ID]=|NEXT_ID||SID|" /><!-- /TPL -->
+<!-- TPL=meta_prev --><link rel="prev" href="|PHPSELF|?page=|PAGE|&amp;tmpl[TPL_ID]=|LAST_ID||SID|" /><!-- /TPL -->
+<!-- TPL=link_next --><a href="|PHPSELF|?page=|PAGE|&amp;tmpl[TPL_ID]=|NEXT_ID||SID|">%%FOLGE%%</a> |<!-- /TPL -->
+<!-- TPL=link_prev --><a href="|PHPSELF|?page=|PAGE|&amp;tmpl[TPL_ID]=|LAST_ID||SID|">%%VORIGE%%</a> |<!-- /TPL -->
