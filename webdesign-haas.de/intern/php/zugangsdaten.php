@@ -7,9 +7,9 @@ class zugangsdaten {
 		$vorgaben['db_prefix'] = 'webdesign__';
 		if ($vorgaben['localhost']===false) {
 			$this->host = 'localhost';
-			$this->user = 'web153';
-			$this->pass = 'Fd2K4brt';
-			$this->db   = 'usr_web153_7';
+			$this->user = 'Database User';
+			$this->pass = 'Database Password';
+			$this->db   = 'Database Name';
 		} else {
 			$this->host = 'localhost';
 			$this->user = 'root';
