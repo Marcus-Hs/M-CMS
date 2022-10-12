@@ -4,17 +4,17 @@ class zugangsdaten {
 	function __construct() {}
 	function zugangsdaten() {	// Set mySQL cennection data
 		global $vorgaben;
-		$vorgaben['db_prefix'] = 'afk__';
-		if ($vorgaben['localhost']===false) {
-			$this->host = 'localhost';
-			$this->user = 'Database User';
-			$this->pass = 'Database Password';
-			$this->db   = 'Database Name';
+		$vorgaben['db_prefix'] = 'afk__';  	// a prefix if you use one DB for multiple instances of M-CMS
+		if ($vorgaben['localhost']===false) {		// this is for remote DB
+			$this->host = 'localhost';		// or IP, or Hostname
+			$this->user = 'Database User';		// Enter the Database Username here
+			$this->pass = 'Database Password';	// Enter the Database Password here
+			$this->db   = 'Database Name';		// Enter the Database Name here
 		} else {
-			$this->host = 'localhost';
+			$this->host = 'localhost';		// this is for your local DB
 			$this->user = 'root';
-			$this->db   = 'weitere';
-			$this->pass = '';
+			$this->db   = 'yourLocalDB';
+			$this->pass = 'yourLocalPassword';
 }	}	}
 function prepare_cms() {	// Preparing some essential constants
 	global $vorgaben;
@@ -24,17 +24,17 @@ function prepare_cms() {	// Preparing some essential constants
 	if	((!empty($_SERVER['SERVER_ADDR'])	&& strpos($_SERVER['SERVER_ADDR'],'127.0.0')!==false)
 		|| (!empty($_SERVER['HTTP_HOST'])	&& strpos($_SERVER['HTTP_HOST'],'127.0.0')!==false)
 		|| (!empty($_SERVER['SERVER_NAME'])	&& (strpos($_SERVER['SERVER_NAME'],'localhost') !== false || strpos($_SERVER['SERVER_NAME'],'local.') === 0)))
-																			$vorgaben['localhost'] = true;											// We are probably on a localhost
-	else																	$vorgaben['localhost'] = false;											// It's a Server onthe web
-	if (!empty($_SERVER['SUB_DIR'])) 										$vorgaben['sub_dir'] = $_SERVER['SUB_DIR'];								// You canset the directory where the cms resides (I've never used this though)
+											$vorgaben['localhost'] = true;											// We are probably on a localhost
+	else										$vorgaben['localhost'] = false;											// It's a Server onthe web
+	if (!empty($_SERVER['SUB_DIR'])) 						$vorgaben['sub_dir'] = $_SERVER['SUB_DIR'];									// You canset the directory where the cms resides (I've never used this though)
 	elseif (strpos($vorgaben['base_dir'],$_SERVER['DOCUMENT_ROOT'])==0)		$vorgaben['sub_dir'] = trim(str_replace(array($_SERVER['DOCUMENT_ROOT'],' '),array('','%20'),$vorgaben['base_dir']),'/');	// Better to determine this automatically
-	if (!empty($vorgaben['sub_dir']))										$vorgaben['sub_dir'] = '/'.$vorgaben['sub_dir'];						// Add a missing slash
-	else																	$vorgaben['sub_dir'] = '';												// Or not if its already the base dir
-	$inc_paths = explode(';',get_include_path());																// read include paths (used later)
-	if (is_dir($vorgaben['base_dir'].'../_mcms'))		$vorgaben['base_cms'] = $vorgaben['base_dir'].'../_mcms/';		// for multidomain installations there may by such a dir with a base installation
-	elseif (is_dir($vorgaben['base_dir'].'../../_mcms'))$vorgaben['base_cms'] = $vorgaben['base_dir'].'../../_mcms/';
-	elseif ($vorgaben['localhost']===false)				$vorgaben['base_cms'] = $vorgaben['base_dir'].'/';				// On the server this is the base path
-	else												$vorgaben['base_cms'] = str_replace('\\','/',end($inc_paths)).'/';// Localy we have a look at the System paths (on win).
+	if (!empty($vorgaben['sub_dir']))						$vorgaben['sub_dir'] = '/'.$vorgaben['sub_dir'];								// Add a missing slash
+	else										$vorgaben['sub_dir'] = '';												// Or not if its already the base dir
+	$inc_paths = explode(';',get_include_path());		// this might not wor on every system. Comment out if needed														// read include paths (used later)
+	if (is_dir($vorgaben['base_dir'].'../_mcms'))		$vorgaben['base_cms'] = $vorgaben['base_dir'].'../_mcms/';		// for multidomain installations there can be subfolders with their own config or different functions or files with a base installation
+	elseif (is_dir($vorgaben['base_dir'].'../../_mcms'))	$vorgaben['base_cms'] = $vorgaben['base_dir'].'../../_mcms/';		// for multidomain installations there may by such a dir with a base installation
+	elseif ($vorgaben['localhost']===false)			$vorgaben['base_cms'] = $vorgaben['base_dir'].'/';			// On the server this is the base path
+	elseif (!empty($inc_paths))				$vorgaben['base_cms'] = str_replace('\\','/',end($inc_paths)).'/';	// Localy we have a look at the System paths (on win).
 	my_include('intern/php/module/');
 	startup();	// There we go start up the CMS (see module/startup.php)
 }
